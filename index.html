@@ -131,6 +131,36 @@
       text-align: center;
     }
 
+    /* Speak zone: word + phonetic, large tap target */
+    #word-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 48px;
+      border-radius: 20px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s;
+    }
+
+    #word-zone:active {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    #back-word-zone {
+      display: flex;
+      flex-direction: column;
+      padding: 16px 0 16px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      border-radius: 12px;
+      transition: background 0.15s;
+    }
+
+    #back-word-zone:active {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
     #word {
       font-size: clamp(52px, 14vw, 84px);
       font-weight: 700;
@@ -449,21 +479,25 @@
   <div id="card-area">
     <!-- Front -->
     <div id="front" class="card">
-      <div id="word">LLM</div>
-      <div id="phonetic-row">
-        <span id="phonetic">/ˌel el ˈem/</span>
-        <button id="speak-btn" aria-label="朗读">🔊</button>
+      <div id="word-zone">
+        <div id="word">LLM</div>
+        <div id="phonetic-row">
+          <span id="phonetic">/ˌel el ˈem/</span>
+          <button id="speak-btn" aria-label="朗读">🔊</button>
+        </div>
       </div>
     </div>
 
     <!-- Back -->
     <div id="back" class="card">
-      <div id="back-word-row">
-        <span id="back-word">LLM</span>
-      </div>
-      <div id="back-phonetic-row">
-        <span id="back-phonetic">/ˌel el ˈem/</span>
-        <button id="back-speak-btn" aria-label="朗读">🔊</button>
+      <div id="back-word-zone">
+        <div id="back-word-row">
+          <span id="back-word">LLM</span>
+        </div>
+        <div id="back-phonetic-row">
+          <span id="back-phonetic">/ˌel el ˈem/</span>
+          <button id="back-speak-btn" aria-label="朗读">🔊</button>
+        </div>
       </div>
       <div id="meaning">大语言模型</div>
       <div id="full-name">Large Language Model</div>
@@ -727,14 +761,17 @@ function speak() {
   });
 }
 
-function addSpeakListeners(btn) {
-  btn.addEventListener('touchstart', (e) => { e.stopPropagation(); }, { passive: true });
-  btn.addEventListener('touchend',   (e) => { e.stopPropagation(); }, { passive: true });
-  btn.addEventListener('click',      (e) => { e.stopPropagation(); speak(); });
+// Word zones: clicking anywhere in them triggers speak
+const wordZone     = document.getElementById('word-zone');
+const backWordZone = document.getElementById('back-word-zone');
+
+function isSpeakTarget(el) {
+  return wordZone.contains(el) || backWordZone.contains(el);
 }
 
-addSpeakListeners(speakBtn);
-addSpeakListeners(backSpeakBtn);
+// Zone click → speak (stops bubbling so card-area flip won't fire)
+wordZone.addEventListener('click', (e) => { e.stopPropagation(); speak(); });
+backWordZone.addEventListener('click', (e) => { e.stopPropagation(); speak(); });
 
 // ═══════════════════════════════════════════════
 // Touch gesture handler
@@ -742,11 +779,13 @@ addSpeakListeners(backSpeakBtn);
 let touchStartX = 0;
 let touchStartY = 0;
 let touchStartTime = 0;
+let touchStartTarget = null;
 
 cardArea.addEventListener('touchstart', (e) => {
   touchStartX = e.touches[0].clientX;
   touchStartY = e.touches[0].clientY;
   touchStartTime = Date.now();
+  touchStartTarget = e.target;
 }, { passive: true });
 
 cardArea.addEventListener('touchend', (e) => {
@@ -759,8 +798,10 @@ cardArea.addEventListener('touchend', (e) => {
 
   // Tap: small movement, reasonably quick
   if (dist < 12 && dt < 400) {
-    if (!isFlipped) {
-      showFace(true);
+    if (isSpeakTarget(touchStartTarget)) {
+      speak(); // tapped word/phonetic zone → pronounce
+    } else if (!isFlipped) {
+      showFace(true); // tapped blank area → flip to back
     }
     return;
   }
@@ -775,9 +816,9 @@ cardArea.addEventListener('touchend', (e) => {
   }
 }, { passive: true });
 
-// Also support mouse click for desktop testing
+// Desktop mouse click support
 cardArea.addEventListener('click', (e) => {
-  // Only handle if no touch event recently fired
+  if (isSpeakTarget(e.target)) return; // handled by zone listener
   if (!isFlipped && e.isTrusted) {
     showFace(true);
   }
