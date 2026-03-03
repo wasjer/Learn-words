@@ -805,7 +805,8 @@ cardArea.addEventListener('touchend', (e) => {
   // Tap: small movement, reasonably quick
   if (dist < 12 && dt < 400) {
     if (isSpeakTarget(touchStartTarget)) {
-      speak(); // tapped word/phonetic zone → pronounce
+      // Let the synthetic click event (~300ms later) handle speak() via zone listener
+      // Calling speak() here AND in click would double-fire and cancel each other
     } else if (!isFlipped) {
       showFace(true); // tapped blank area → flip to back
     }
