@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="背单词">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>背单词</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+                   'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ── App shell ── */
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+    }
+
+    /* ── Top bar ── */
+    #topbar {
+      position: absolute;
+      top: var(--safe-top);
+      right: var(--safe-right);
+      padding: 14px 18px;
+      z-index: 10;
+    }
+
+    #menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #aaaaaa;
+      font-size: 22px;
+      line-height: 1;
+      padding: 6px;
+      border-radius: 8px;
+      transition: color 0.2s;
+      letter-spacing: 2px;
+    }
+
+    #menu-btn:active {
+      color: #333333;
+    }
+
+    /* ── Card area ── */
+    #card-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* ── Card (front / back) ── */
+    .card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .card.slide-out-up {
+      animation: slideOutUp 0.22s ease forwards;
+    }
+    .card.slide-out-down {
+      animation: slideOutDown 0.22s ease forwards;
+    }
+    .card.slide-in-up {
+      animation: slideInUp 0.22s ease forwards;
+    }
+    .card.slide-in-down {
+      animation: slideInDown 0.22s ease forwards;
+    }
+
+    @keyframes slideOutUp {
+      to { transform: translateY(-40px); opacity: 0; }
+    }
+    @keyframes slideOutDown {
+      to { transform: translateY(40px); opacity: 0; }
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    @keyframes slideInDown {
+      from { transform: translateY(-40px); opacity: 0; }
+      to   { transform: translateY(0);     opacity: 1; }
+    }
+
+    /* ── Front face ── */
+    #front {
+      text-align: center;
+    }
+
+    #word {
+      font-size: clamp(52px, 14vw, 84px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #111111;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    #phonetic-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+
+    #phonetic {
+      font-size: 17px;
+      color: #888888;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    #speak-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 17px;
+      color: #aaaaaa;
+      padding: 2px 4px;
+      border-radius: 6px;
+      transition: color 0.15s;
+      line-height: 1;
+    }
+
+    #speak-btn:active {
+      color: #333333;
+    }
+
+    #hint-front {
+      position: absolute;
+      bottom: calc(var(--safe-bottom) + 28px);
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 13px;
+      color: #cccccc;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Back face ── */
+    #back {
+      display: none;
+      width: 100%;
+      max-width: 420px;
+      text-align: left;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 32px 20px;
+      gap: 0;
+    }
+
+    #back.visible {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #back-word-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    #back-word {
+      font-size: 22px;
+      font-weight: 600;
+      color: #888888;
+    }
+
+    #back-phonetic-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    #back-phonetic {
+      font-size: 15px;
+      color: #aaaaaa;
+    }
+
+    #back-speak-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      color: #bbbbbb;
+      padding: 2px 4px;
+      border-radius: 6px;
+      transition: color 0.15s;
+      line-height: 1;
+    }
+
+    #back-speak-btn:active {
+      color: #333333;
+    }
+
+    #meaning {
+      font-size: clamp(28px, 8vw, 42px);
+      font-weight: 700;
+      color: #111111;
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    #full-name {
+      font-size: 14px;
+      color: #aaaaaa;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 32px;
+      height: 2px;
+      background: #eeeeee;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    #example {
+      font-size: 16px;
+      color: #444444;
+      line-height: 1.65;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    #translation {
+      font-size: 15px;
+      color: #888888;
+      line-height: 1.65;
+    }
+
+    #hint-back {
+      position: absolute;
+      bottom: calc(var(--safe-bottom) + 28px);
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 13px;
+      color: #cccccc;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Menu overlay ── */
+    #menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.88);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      backdrop-filter: blur(28px) saturate(180%);
+      padding-top: var(--safe-top);
+      padding-bottom: calc(var(--safe-bottom) + 20px);
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+    }
+
+    #menu-overlay.open {
+      display: flex;
+    }
+
+    #menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px 12px;
+    }
+
+    #menu-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #111111;
+    }
+
+    #menu-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      color: #007AFF;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    #menu-close:active {
+      background: rgba(0,122,255,0.1);
+    }
+
+    .menu-section {
+      padding: 4px 20px 0;
+    }
+
+    .menu-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #aaaaaa;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 10px 4px 6px;
+    }
+
+    .menu-card {
+      background: #f5f5f5;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .menu-item:active {
+      background: rgba(0,0,0,0.06);
+    }
+
+    .menu-item + .menu-item {
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .menu-item-label {
+      font-size: 16px;
+      color: #111111;
+      font-weight: 400;
+    }
+
+    .menu-item-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      color: #aaaaaa;
+    }
+
+    .menu-item-right .checkmark {
+      color: #007AFF;
+      font-size: 17px;
+    }
+
+    .menu-item-right .chevron {
+      font-size: 13px;
+    }
+
+    #update-status {
+      font-size: 13px;
+      color: #aaaaaa;
+      margin-top: 6px;
+      padding: 0 4px;
+      min-height: 18px;
+    }
+
+    #update-status.success {
+      color: #34C759;
+    }
+
+    #update-status.error {
+      color: #FF3B30;
+    }
+
+    .menu-item.disabled .menu-item-label {
+      color: #cccccc;
+    }
+
+    .menu-item.disabled {
+      cursor: default;
+    }
+
+    .about-text {
+      font-size: 13px;
+      color: #888888;
+      line-height: 1.6;
+      padding: 10px 16px 14px;
+    }
+
+    /* ── Swipe direction indicator ── */
+    #swipe-indicator {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.1s;
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <button id="menu-btn" aria-label="菜单">···</button>
+  </div>
+
+  <div id="card-area">
+    <!-- Front -->
+    <div id="front" class="card">
+      <div id="word">LLM</div>
+      <div id="phonetic-row">
+        <span id="phonetic">/ˌel el ˈem/</span>
+        <button id="speak-btn" aria-label="朗读">🔊</button>
+      </div>
+    </div>
+
+    <!-- Back -->
+    <div id="back" class="card">
+      <div id="back-word-row">
+        <span id="back-word">LLM</span>
+      </div>
+      <div id="back-phonetic-row">
+        <span id="back-phonetic">/ˌel el ˈem/</span>
+        <button id="back-speak-btn" aria-label="朗读">🔊</button>
+      </div>
+      <div id="meaning">大语言模型</div>
+      <div id="full-name">Large Language Model</div>
+      <div class="divider"></div>
+      <div id="example">"GPT-4 is a powerful LLM trained on vast amounts of text data."</div>
+      <div id="translation">GPT-4 是一个在海量文本数据上训练的强大大语言模型。</div>
+    </div>
+
+    <div id="hint-front">点击屏幕查看释义</div>
+    <div id="hint-back" style="display:none">上滑下一个 · 下滑上一个</div>
+  </div>
+</div>
+
+<!-- Menu overlay -->
+<div id="menu-overlay" role="dialog" aria-modal="true" aria-label="菜单">
+  <div id="menu-header">
+    <span id="menu-title">设置</span>
+    <button id="menu-close">完成</button>
+  </div>
+
+  <div class="menu-section">
+    <div class="menu-section-title">词库</div>
+    <div class="menu-card" id="wordbank-list"></div>
+  </div>
+
+  <div class="menu-section" style="margin-top: 16px;">
+    <div class="menu-section-title">更新</div>
+    <div class="menu-card">
+      <button class="menu-item" id="update-btn">
+        <span class="menu-item-label">检查词库更新</span>
+        <span class="menu-item-right" id="update-icon">↓</span>
+      </button>
+    </div>
+    <div id="update-status"></div>
+  </div>
+
+  <div class="menu-section" style="margin-top: 16px;">
+    <div class="menu-section-title">关于</div>
+    <div class="menu-card">
+      <div class="about-text">
+        AI 背单词 · 主动回想模式<br>
+        点击屏幕翻转卡片，上滑切换下一个，下滑返回上一个。<br>
+        每台设备进度独立保存，无需登录。
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// Config: known word banks (file → display name)
+// To add a new bank: push a new entry here and
+// add the corresponding JSON file to /words/
+// ═══════════════════════════════════════════════
+const BANKS = [
+  { file: 'ai-ml.json', name: 'AI / ML 核心词汇' }
+];
+
+// ═══════════════════════════════════════════════
+// State
+// ═══════════════════════════════════════════════
+let words        = [];
+let currentIndex = 0;
+let isFlipped    = false;
+let isAnimating  = false;
+let currentBank  = BANKS[0].file;
+
+// ═══════════════════════════════════════════════
+// DOM refs
+// ═══════════════════════════════════════════════
+const cardArea     = document.getElementById('card-area');
+const frontEl      = document.getElementById('front');
+const backEl       = document.getElementById('back');
+const wordEl       = document.getElementById('word');
+const phoneticEl   = document.getElementById('phonetic');
+const speakBtn     = document.getElementById('speak-btn');
+const backWordEl   = document.getElementById('back-word');
+const backPhoneticEl = document.getElementById('back-phonetic');
+const backSpeakBtn = document.getElementById('back-speak-btn');
+const meaningEl    = document.getElementById('meaning');
+const fullNameEl   = document.getElementById('full-name');
+const exampleEl    = document.getElementById('example');
+const translationEl= document.getElementById('translation');
+const hintFront    = document.getElementById('hint-front');
+const hintBack     = document.getElementById('hint-back');
+const menuOverlay  = document.getElementById('menu-overlay');
+const menuBtn      = document.getElementById('menu-btn');
+const menuClose    = document.getElementById('menu-close');
+const wordbankList = document.getElementById('wordbank-list');
+const updateBtn    = document.getElementById('update-btn');
+const updateStatus = document.getElementById('update-status');
+const updateIcon   = document.getElementById('update-icon');
+
+// ═══════════════════════════════════════════════
+// Load word bank
+// ═══════════════════════════════════════════════
+async function loadBank(filename, forceUpdate = false) {
+  const key      = 'words_' + filename;
+  const url      = `./words/${filename}`;
+
+  if (!forceUpdate) {
+    const cached = localStorage.getItem(key);
+    if (cached) {
+      try {
+        const data = JSON.parse(cached);
+        return data.words || data;
+      } catch {}
+    }
+  }
+
+  // Force-bypass both browser cache and SW cache
+  const fetchUrl = `${url}?t=${Date.now()}`;
+  const res = await fetch(fetchUrl, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  localStorage.setItem(key, JSON.stringify(data));
+  return data.words || data;
+}
+
+async function initBank(filename) {
+  currentBank = filename;
+  words = await loadBank(filename);
+
+  // Restore position
+  const savedIndex = parseInt(localStorage.getItem('pos_' + filename) || '0', 10);
+  currentIndex = (savedIndex >= 0 && savedIndex < words.length) ? savedIndex : 0;
+
+  isFlipped = false;
+  renderCard();
+}
+
+function savePosition() {
+  localStorage.setItem('pos_' + currentBank, String(currentIndex));
+}
+
+// ═══════════════════════════════════════════════
+// Render
+// ═══════════════════════════════════════════════
+function renderCard() {
+  const w = words[currentIndex];
+  if (!w) return;
+
+  wordEl.textContent       = w.word;
+  phoneticEl.textContent   = w.phonetic || '';
+  backWordEl.textContent   = w.word;
+  backPhoneticEl.textContent = w.phonetic || '';
+  meaningEl.textContent    = w.meaning || '';
+  fullNameEl.textContent   = w.fullName || '';
+  exampleEl.textContent    = w.example ? `"${w.example}"` : '';
+  translationEl.textContent = w.translation || '';
+
+  // Show/hide full-name line
+  fullNameEl.style.display = w.fullName ? 'block' : 'none';
+
+  showFace(false);
+}
+
+function showFace(flip) {
+  isFlipped = flip;
+  if (flip) {
+    frontEl.style.display = 'none';
+    backEl.style.display  = 'flex';
+    backEl.classList.add('visible');
+    hintFront.style.display = 'none';
+    hintBack.style.display  = 'block';
+  } else {
+    frontEl.style.display = 'flex';
+    backEl.style.display  = 'none';
+    backEl.classList.remove('visible');
+    hintFront.style.display = 'block';
+    hintBack.style.display  = 'none';
+    // Scroll back to top when re-showing front
+    backEl.scrollTop = 0;
+  }
+}
+
+// ═══════════════════════════════════════════════
+// Navigation with animation
+// ═══════════════════════════════════════════════
+function goNext() {
+  if (isAnimating || words.length === 0) return;
+  if (currentIndex >= words.length - 1) {
+    // Bounce effect at end
+    cardArea.style.transform = 'translateY(-8px)';
+    setTimeout(() => { cardArea.style.transform = ''; }, 200);
+    return;
+  }
+  navigate(1);
+}
+
+function goPrev() {
+  if (isAnimating || words.length === 0) return;
+  if (currentIndex <= 0) {
+    cardArea.style.transform = 'translateY(8px)';
+    setTimeout(() => { cardArea.style.transform = ''; }, 200);
+    return;
+  }
+  navigate(-1);
+}
+
+function navigate(dir) {
+  isAnimating = true;
+  const outClass = dir === 1 ? 'slide-out-up' : 'slide-out-down';
+  const inClass  = dir === 1 ? 'slide-in-up'  : 'slide-in-down';
+  const active   = isFlipped ? backEl : frontEl;
+
+  active.classList.add(outClass);
+
+  setTimeout(() => {
+    active.classList.remove(outClass);
+    currentIndex += dir;
+    savePosition();
+    isFlipped = false;
+    renderCard();
+
+    const next = frontEl;
+    next.classList.add(inClass);
+    setTimeout(() => {
+      next.classList.remove(inClass);
+      isAnimating = false;
+    }, 220);
+  }, 220);
+}
+
+// ═══════════════════════════════════════════════
+// Speech
+// ═══════════════════════════════════════════════
+function speak() {
+  if (!('speechSynthesis' in window)) return;
+  const w = words[currentIndex];
+  if (!w) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(w.word);
+  utt.lang = 'en-US';
+  utt.rate = 0.9;
+  window.speechSynthesis.speak(utt);
+}
+
+function addSpeakListeners(btn) {
+  btn.addEventListener('touchstart', (e) => { e.stopPropagation(); }, { passive: true });
+  btn.addEventListener('touchend',   (e) => { e.stopPropagation(); }, { passive: true });
+  btn.addEventListener('click',      (e) => { e.stopPropagation(); speak(); });
+}
+
+addSpeakListeners(speakBtn);
+addSpeakListeners(backSpeakBtn);
+
+// ═══════════════════════════════════════════════
+// Touch gesture handler
+// ═══════════════════════════════════════════════
+let touchStartX = 0;
+let touchStartY = 0;
+let touchStartTime = 0;
+
+cardArea.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  touchStartTime = Date.now();
+}, { passive: true });
+
+cardArea.addEventListener('touchend', (e) => {
+  if (menuOverlay.classList.contains('open')) return;
+
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const dt = Date.now() - touchStartTime;
+
+  // Tap: small movement, reasonably quick
+  if (dist < 12 && dt < 400) {
+    if (!isFlipped) {
+      showFace(true);
+    }
+    return;
+  }
+
+  // Swipe: dominant vertical movement
+  if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 30) {
+    if (dy < 0) {
+      goNext(); // swipe up → next
+    } else {
+      goPrev(); // swipe down → prev
+    }
+  }
+}, { passive: true });
+
+// Also support mouse click for desktop testing
+cardArea.addEventListener('click', (e) => {
+  // Only handle if no touch event recently fired
+  if (!isFlipped && e.isTrusted) {
+    showFace(true);
+  }
+});
+
+// ═══════════════════════════════════════════════
+// Menu
+// ═══════════════════════════════════════════════
+function buildBankList() {
+  wordbankList.innerHTML = '';
+  BANKS.forEach((bank, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'menu-item';
+    const isCurrent = bank.file === currentBank;
+    btn.innerHTML = `
+      <span class="menu-item-label">${bank.name}</span>
+      <span class="menu-item-right">
+        ${isCurrent ? '<span class="checkmark">✓</span>' : ''}
+      </span>
+    `;
+    if (i > 0) {} // dividers handled by CSS
+    btn.addEventListener('click', async () => {
+      if (bank.file === currentBank) return;
+      closeMenu();
+      await initBank(bank.file);
+      buildBankList();
+    });
+    wordbankList.appendChild(btn);
+  });
+}
+
+function openMenu() {
+  buildBankList();
+  menuOverlay.classList.add('open');
+  updateStatus.textContent = '';
+  updateStatus.className = '';
+
+  // Check online status
+  const isOnline = navigator.onLine;
+  updateBtn.classList.toggle('disabled', !isOnline);
+  updateIcon.textContent = isOnline ? '↓' : '—';
+  updateBtn.disabled = !isOnline;
+}
+
+function closeMenu() {
+  menuOverlay.classList.remove('open');
+}
+
+menuBtn.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+
+// Close on backdrop tap
+menuOverlay.addEventListener('click', (e) => {
+  if (e.target === menuOverlay) closeMenu();
+});
+
+// ═══════════════════════════════════════════════
+// Word bank update
+// ═══════════════════════════════════════════════
+updateBtn.addEventListener('click', async () => {
+  if (!navigator.onLine) return;
+  updateStatus.textContent = '正在更新…';
+  updateStatus.className = '';
+  updateBtn.disabled = true;
+  updateIcon.textContent = '…';
+
+  try {
+    const freshWords = await loadBank(currentBank, true);
+    words = freshWords;
+
+    // Clamp index in case word count decreased
+    if (currentIndex >= words.length) {
+      currentIndex = words.length - 1;
+    }
+    renderCard();
+    updateStatus.textContent = `已更新 · 共 ${words.length} 个词`;
+    updateStatus.className = 'success';
+    updateIcon.textContent = '✓';
+  } catch (err) {
+    updateStatus.textContent = '更新失败，请检查网络';
+    updateStatus.className = 'error';
+    updateIcon.textContent = '↓';
+  } finally {
+    updateBtn.disabled = false;
+  }
+});
+
+// ═══════════════════════════════════════════════
+// Service Worker registration
+// ═══════════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+// ═══════════════════════════════════════════════
+// Boot
+// ═══════════════════════════════════════════════
+(async () => {
+  try {
+    await initBank(currentBank);
+  } catch (e) {
+    wordEl.textContent = '加载失败';
+    phoneticEl.textContent = '请检查网络后刷新';
+  }
+})();
+</script>
+</body>
+</html>

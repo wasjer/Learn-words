@@ -1,0 +1,565 @@
+{
+  "name": "AI/ML 核心词汇",
+  "words": [
+    {
+      "word": "LLM",
+      "phonetic": "/ˌel el ˈem/",
+      "meaning": "大语言模型",
+      "fullName": "Large Language Model",
+      "example": "GPT-4 is a powerful LLM trained on vast amounts of text data.",
+      "translation": "GPT-4 是一个在海量文本数据上训练的强大大语言模型。"
+    },
+    {
+      "word": "RAG",
+      "phonetic": "/ræɡ/",
+      "meaning": "检索增强生成",
+      "fullName": "Retrieval-Augmented Generation",
+      "example": "RAG combines a retrieval system with a language model to reduce hallucinations.",
+      "translation": "RAG 将检索系统与语言模型结合，以减少幻觉问题。"
+    },
+    {
+      "word": "RLHF",
+      "phonetic": "/ˌɑːr el eɪtʃ ˈef/",
+      "meaning": "基于人类反馈的强化学习",
+      "fullName": "Reinforcement Learning from Human Feedback",
+      "example": "ChatGPT was fine-tuned using RLHF to better align with human preferences.",
+      "translation": "ChatGPT 使用 RLHF 进行微调，以更好地符合人类偏好。"
+    },
+    {
+      "word": "SFT",
+      "phonetic": "/ˌes ef ˈtiː/",
+      "meaning": "监督微调",
+      "fullName": "Supervised Fine-Tuning",
+      "example": "SFT is the first step in training an instruction-following model.",
+      "translation": "SFT 是训练遵循指令模型的第一步。"
+    },
+    {
+      "word": "LoRA",
+      "phonetic": "/ˈlɔːrə/",
+      "meaning": "低秩适配",
+      "fullName": "Low-Rank Adaptation",
+      "example": "LoRA fine-tunes LLMs efficiently by adding small trainable matrices.",
+      "translation": "LoRA 通过添加小型可训练矩阵来高效微调大语言模型。"
+    },
+    {
+      "word": "MoE",
+      "phonetic": "/ˌem oʊ ˈiː/",
+      "meaning": "混合专家模型",
+      "fullName": "Mixture of Experts",
+      "example": "MoE models activate only a subset of parameters for each input token.",
+      "translation": "MoE 模型对每个输入 token 只激活部分参数。"
+    },
+    {
+      "word": "CoT",
+      "phonetic": "/ˌsiː oʊ ˈtiː/",
+      "meaning": "思维链",
+      "fullName": "Chain of Thought",
+      "example": "CoT prompting encourages the model to show its reasoning step by step.",
+      "translation": "CoT 提示鼓励模型逐步展示其推理过程。"
+    },
+    {
+      "word": "MCP",
+      "phonetic": "/ˌem siː ˈpiː/",
+      "meaning": "模型上下文协议",
+      "fullName": "Model Context Protocol",
+      "example": "MCP is an open standard for connecting AI models to external tools and data.",
+      "translation": "MCP 是一个将 AI 模型连接到外部工具和数据的开放标准。"
+    },
+    {
+      "word": "KV Cache",
+      "phonetic": "/ˌkeɪ ˈviː kæʃ/",
+      "meaning": "键值缓存",
+      "fullName": "Key-Value Cache",
+      "example": "KV Cache stores past attention computations to speed up inference.",
+      "translation": "KV Cache 存储过去的注意力计算结果以加速推理。"
+    },
+    {
+      "word": "Embedding",
+      "phonetic": "/ɪmˈbedɪŋ/",
+      "meaning": "嵌入（向量表示）",
+      "fullName": "Embedding",
+      "example": "Word embeddings map tokens to dense vectors in a high-dimensional space.",
+      "translation": "词嵌入将 token 映射到高维空间中的稠密向量。"
+    },
+    {
+      "word": "Fine-tuning",
+      "phonetic": "/ˈfaɪn tjuːnɪŋ/",
+      "meaning": "微调",
+      "fullName": "Fine-tuning",
+      "example": "Fine-tuning adapts a pre-trained model to a specific downstream task.",
+      "translation": "微调将预训练模型适配到特定的下游任务。"
+    },
+    {
+      "word": "Inference",
+      "phonetic": "/ˈɪnfərəns/",
+      "meaning": "推理（模型运行）",
+      "fullName": "Inference",
+      "example": "Inference refers to running a trained model to generate predictions.",
+      "translation": "推理是指运行已训练的模型来生成预测结果。"
+    },
+    {
+      "word": "Hallucination",
+      "phonetic": "/həˌluːsɪˈneɪʃən/",
+      "meaning": "幻觉（模型捏造内容）",
+      "fullName": "Hallucination",
+      "example": "LLMs sometimes hallucinate facts that sound plausible but are incorrect.",
+      "translation": "大语言模型有时会产生听起来合理但实际上错误的幻觉内容。"
+    },
+    {
+      "word": "Transformer",
+      "phonetic": "/trænsˈfɔːrmər/",
+      "meaning": "变换器（神经网络架构）",
+      "fullName": "Transformer",
+      "example": "The Transformer architecture uses self-attention to process sequences in parallel.",
+      "translation": "Transformer 架构使用自注意力机制并行处理序列。"
+    },
+    {
+      "word": "Attention",
+      "phonetic": "/əˈtenʃən/",
+      "meaning": "注意力机制",
+      "fullName": "Attention Mechanism",
+      "example": "Self-attention allows each token to attend to all other tokens in a sequence.",
+      "translation": "自注意力允许每个 token 关注序列中的所有其他 token。"
+    },
+    {
+      "word": "Token",
+      "phonetic": "/ˈtoʊkən/",
+      "meaning": "词元（文本基本单位）",
+      "fullName": "Token",
+      "example": "A token is the basic unit of text that a language model processes.",
+      "translation": "Token 是语言模型处理的文本基本单位。"
+    },
+    {
+      "word": "Context Window",
+      "phonetic": "/ˈkɒntekst ˈwɪndoʊ/",
+      "meaning": "上下文窗口",
+      "fullName": "Context Window",
+      "example": "A larger context window allows the model to consider more text at once.",
+      "translation": "更大的上下文窗口允许模型一次考虑更多文本。"
+    },
+    {
+      "word": "Quantization",
+      "phonetic": "/ˌkwɒntɪˈzeɪʃən/",
+      "meaning": "量化（模型压缩）",
+      "fullName": "Quantization",
+      "example": "Quantization reduces model size by using lower-precision weights like INT4.",
+      "translation": "量化通过使用 INT4 等低精度权重来减小模型大小。"
+    },
+    {
+      "word": "Prompt Engineering",
+      "phonetic": "/prɒmpt ˌendʒɪˈnɪərɪŋ/",
+      "meaning": "提示词工程",
+      "fullName": "Prompt Engineering",
+      "example": "Prompt engineering is the art of crafting inputs to get better outputs from LLMs.",
+      "translation": "提示词工程是设计输入以从大语言模型获得更好输出的技术。"
+    },
+    {
+      "word": "Pre-training",
+      "phonetic": "/ˌpriːˈtreɪnɪŋ/",
+      "meaning": "预训练",
+      "fullName": "Pre-training",
+      "example": "Pre-training on large corpora gives the model broad language understanding.",
+      "translation": "在大型语料库上预训练使模型获得广泛的语言理解能力。"
+    },
+    {
+      "word": "Agent",
+      "phonetic": "/ˈeɪdʒənt/",
+      "meaning": "智能体",
+      "fullName": "AI Agent",
+      "example": "An AI agent can autonomously take actions to achieve a specified goal.",
+      "translation": "AI 智能体可以自主采取行动来实现指定目标。"
+    },
+    {
+      "word": "Vector DB",
+      "phonetic": "/ˈvektər diː biː/",
+      "meaning": "向量数据库",
+      "fullName": "Vector Database",
+      "example": "A vector database stores embeddings and enables fast similarity search.",
+      "translation": "向量数据库存储嵌入向量并支持快速相似度搜索。"
+    },
+    {
+      "word": "Multimodal",
+      "phonetic": "/ˌmʌltiˈmoʊdəl/",
+      "meaning": "多模态",
+      "fullName": "Multimodal",
+      "example": "A multimodal model can process both text and images as input.",
+      "translation": "多模态模型可以同时处理文本和图像输入。"
+    },
+    {
+      "word": "Zero-shot",
+      "phonetic": "/ˈzɪəroʊ ʃɒt/",
+      "meaning": "零样本（无示例推理）",
+      "fullName": "Zero-shot Learning",
+      "example": "Zero-shot prompting asks the model to perform a task without any examples.",
+      "translation": "零样本提示要求模型在没有任何示例的情况下执行任务。"
+    },
+    {
+      "word": "Few-shot",
+      "phonetic": "/ˈfjuːʃɒt/",
+      "meaning": "少样本（少量示例推理）",
+      "fullName": "Few-shot Learning",
+      "example": "Few-shot prompting provides a small number of examples to guide the model.",
+      "translation": "少样本提示提供少量示例来引导模型。"
+    },
+    {
+      "word": "Grounding",
+      "phonetic": "/ˈɡraʊndɪŋ/",
+      "meaning": "事实锚定",
+      "fullName": "Grounding",
+      "example": "Grounding connects model outputs to verified external knowledge sources.",
+      "translation": "事实锚定将模型输出与已验证的外部知识源相连接。"
+    },
+    {
+      "word": "PEFT",
+      "phonetic": "/ˌpiː iː ef ˈtiː/",
+      "meaning": "参数高效微调",
+      "fullName": "Parameter-Efficient Fine-Tuning",
+      "example": "PEFT methods like LoRA update only a small fraction of model parameters.",
+      "translation": "PEFT 方法（如 LoRA）只更新模型参数的一小部分。"
+    },
+    {
+      "word": "DPO",
+      "phonetic": "/ˌdiː piː ˈoʊ/",
+      "meaning": "直接偏好优化",
+      "fullName": "Direct Preference Optimization",
+      "example": "DPO is a simpler alternative to RLHF for aligning language models.",
+      "translation": "DPO 是 RLHF 的一种更简单的替代方案，用于对齐语言模型。"
+    },
+    {
+      "word": "PPO",
+      "phonetic": "/ˌpiː piː ˈoʊ/",
+      "meaning": "近端策略优化",
+      "fullName": "Proximal Policy Optimization",
+      "example": "PPO is the reinforcement learning algorithm used in the RLHF training stage.",
+      "translation": "PPO 是 RLHF 训练阶段使用的强化学习算法。"
+    },
+    {
+      "word": "Alignment",
+      "phonetic": "/əˈlaɪnmənt/",
+      "meaning": "对齐（使模型符合人类价值观）",
+      "fullName": "AI Alignment",
+      "example": "Alignment research aims to ensure AI systems act in accordance with human values.",
+      "translation": "对齐研究旨在确保 AI 系统按照人类价值观行事。"
+    },
+    {
+      "word": "Tokenizer",
+      "phonetic": "/ˈtoʊkənaɪzər/",
+      "meaning": "分词器",
+      "fullName": "Tokenizer",
+      "example": "A tokenizer splits raw text into tokens before feeding it to the model.",
+      "translation": "分词器在将文本输入模型前将其拆分为 token。"
+    },
+    {
+      "word": "BPE",
+      "phonetic": "/ˌbiː piː ˈiː/",
+      "meaning": "字节对编码",
+      "fullName": "Byte Pair Encoding",
+      "example": "BPE is a tokenization algorithm that merges frequent character pairs.",
+      "translation": "BPE 是一种合并高频字符对的分词算法。"
+    },
+    {
+      "word": "Perplexity",
+      "phonetic": "/pərˈpleksɪti/",
+      "meaning": "困惑度（语言模型评估指标）",
+      "fullName": "Perplexity",
+      "example": "Lower perplexity indicates the model is better at predicting the text.",
+      "translation": "较低的困惑度表明模型在预测文本方面表现更好。"
+    },
+    {
+      "word": "Latency",
+      "phonetic": "/ˈleɪtənsi/",
+      "meaning": "延迟（响应时间）",
+      "fullName": "Latency",
+      "example": "Reducing latency is critical for real-time AI applications.",
+      "translation": "降低延迟对于实时 AI 应用至关重要。"
+    },
+    {
+      "word": "Throughput",
+      "phonetic": "/ˈθruːpʊt/",
+      "meaning": "吞吐量",
+      "fullName": "Throughput",
+      "example": "Throughput measures how many tokens per second a model can generate.",
+      "translation": "吞吐量衡量模型每秒可以生成多少 token。"
+    },
+    {
+      "word": "VRAM",
+      "phonetic": "/ˈviːræm/",
+      "meaning": "显存",
+      "fullName": "Video Random Access Memory",
+      "example": "Running a 70B model locally requires significant VRAM.",
+      "translation": "在本地运行 700 亿参数模型需要大量显存。"
+    },
+    {
+      "word": "GPU",
+      "phonetic": "/ˌdʒiː piː ˈjuː/",
+      "meaning": "图形处理器",
+      "fullName": "Graphics Processing Unit",
+      "example": "GPUs accelerate matrix operations essential for training neural networks.",
+      "translation": "GPU 加速了训练神经网络所必需的矩阵运算。"
+    },
+    {
+      "word": "TPU",
+      "phonetic": "/ˌtiː piː ˈjuː/",
+      "meaning": "张量处理器",
+      "fullName": "Tensor Processing Unit",
+      "example": "Google's TPUs are custom chips designed specifically for deep learning workloads.",
+      "translation": "谷歌的 TPU 是专为深度学习工作负载设计的定制芯片。"
+    },
+    {
+      "word": "Diffusion Model",
+      "phonetic": "/dɪˈfjuːʒən ˈmɒdəl/",
+      "meaning": "扩散模型",
+      "fullName": "Diffusion Model",
+      "example": "Stable Diffusion is a popular diffusion model used for image generation.",
+      "translation": "Stable Diffusion 是一种流行的用于图像生成的扩散模型。"
+    },
+    {
+      "word": "GAN",
+      "phonetic": "/ɡæn/",
+      "meaning": "生成对抗网络",
+      "fullName": "Generative Adversarial Network",
+      "example": "A GAN trains a generator and discriminator in competition with each other.",
+      "translation": "GAN 通过让生成器和判别器相互竞争来进行训练。"
+    },
+    {
+      "word": "VAE",
+      "phonetic": "/ˌviː eɪ ˈiː/",
+      "meaning": "变分自编码器",
+      "fullName": "Variational Autoencoder",
+      "example": "A VAE learns a compressed latent representation of input data.",
+      "translation": "VAE 学习输入数据的压缩潜在表示。"
+    },
+    {
+      "word": "Encoder",
+      "phonetic": "/ɪnˈkoʊdər/",
+      "meaning": "编码器",
+      "fullName": "Encoder",
+      "example": "An encoder compresses input data into a dense representation.",
+      "translation": "编码器将输入数据压缩为稠密表示。"
+    },
+    {
+      "word": "Decoder",
+      "phonetic": "/dɪˈkoʊdər/",
+      "meaning": "解码器",
+      "fullName": "Decoder",
+      "example": "A decoder generates output sequences from an encoded representation.",
+      "translation": "解码器从编码表示中生成输出序列。"
+    },
+    {
+      "word": "Softmax",
+      "phonetic": "/ˈsɒftmæks/",
+      "meaning": "归一化指数函数",
+      "fullName": "Softmax",
+      "example": "Softmax converts raw logits into a probability distribution over vocabulary.",
+      "translation": "Softmax 将原始 logit 值转换为词汇表上的概率分布。"
+    },
+    {
+      "word": "Temperature",
+      "phonetic": "/ˈtemprətʃər/",
+      "meaning": "温度（控制生成随机性）",
+      "fullName": "Temperature",
+      "example": "A higher temperature makes the model's output more random and creative.",
+      "translation": "较高的温度使模型的输出更加随机和有创意。"
+    },
+    {
+      "word": "Top-p",
+      "phonetic": "/ˌtɒp ˈpiː/",
+      "meaning": "核采样",
+      "fullName": "Nucleus Sampling",
+      "example": "Top-p sampling selects from the smallest set of tokens whose cumulative probability exceeds p.",
+      "translation": "Top-p 采样从累积概率超过 p 的最小 token 集合中进行选择。"
+    },
+    {
+      "word": "Overfitting",
+      "phonetic": "/ˌoʊvərˈfɪtɪŋ/",
+      "meaning": "过拟合",
+      "fullName": "Overfitting",
+      "example": "Overfitting occurs when a model memorizes training data and fails to generalize.",
+      "translation": "过拟合发生在模型记住训练数据但无法泛化时。"
+    },
+    {
+      "word": "Benchmark",
+      "phonetic": "/ˈbentʃmɑːrk/",
+      "meaning": "基准测试",
+      "fullName": "Benchmark",
+      "example": "MMLU is a popular benchmark for evaluating LLM knowledge across many subjects.",
+      "translation": "MMLU 是一个评估大语言模型跨多个学科知识的流行基准。"
+    },
+    {
+      "word": "MMLU",
+      "phonetic": "/ˌem em el ˈjuː/",
+      "meaning": "大规模多任务语言理解",
+      "fullName": "Massive Multitask Language Understanding",
+      "example": "MMLU tests a model on 57 subjects including math, science, and law.",
+      "translation": "MMLU 在包括数学、科学和法律在内的 57 个学科上测试模型。"
+    },
+    {
+      "word": "Multihead Attention",
+      "phonetic": "/ˌmʌltihed əˈtenʃən/",
+      "meaning": "多头注意力",
+      "fullName": "Multi-Head Attention",
+      "example": "Multi-head attention runs several attention operations in parallel.",
+      "translation": "多头注意力并行运行多个注意力操作。"
+    },
+    {
+      "word": "Positional Encoding",
+      "phonetic": "/pəˈzɪʃənəl ɪnˈkoʊdɪŋ/",
+      "meaning": "位置编码",
+      "fullName": "Positional Encoding",
+      "example": "Positional encoding gives the model information about token order.",
+      "translation": "位置编码向模型提供 token 顺序的信息。"
+    },
+    {
+      "word": "RoPE",
+      "phonetic": "/roʊp/",
+      "meaning": "旋转位置编码",
+      "fullName": "Rotary Position Embedding",
+      "example": "RoPE encodes position information using rotation matrices applied to query and key vectors.",
+      "translation": "RoPE 使用应用于查询和键向量的旋转矩阵来编码位置信息。"
+    },
+    {
+      "word": "Flash Attention",
+      "phonetic": "/flæʃ əˈtenʃən/",
+      "meaning": "闪存注意力（高效注意力算法）",
+      "fullName": "Flash Attention",
+      "example": "Flash Attention computes attention faster by reducing memory reads and writes.",
+      "translation": "Flash Attention 通过减少内存读写来更快地计算注意力。"
+    },
+    {
+      "word": "Speculative Decoding",
+      "phonetic": "/ˈspekjələtɪv dɪˈkoʊdɪŋ/",
+      "meaning": "推测解码",
+      "fullName": "Speculative Decoding",
+      "example": "Speculative decoding uses a small draft model to speed up generation.",
+      "translation": "推测解码使用小型草稿模型来加速生成过程。"
+    },
+    {
+      "word": "Knowledge Distillation",
+      "phonetic": "/ˈnɒlɪdʒ ˌdɪstɪˈleɪʃən/",
+      "meaning": "知识蒸馏",
+      "fullName": "Knowledge Distillation",
+      "example": "Knowledge distillation trains a smaller student model to mimic a larger teacher model.",
+      "translation": "知识蒸馏训练较小的学生模型来模仿较大的教师模型。"
+    },
+    {
+      "word": "Pruning",
+      "phonetic": "/ˈpruːnɪŋ/",
+      "meaning": "剪枝（模型压缩）",
+      "fullName": "Pruning",
+      "example": "Pruning removes less important weights from a model to reduce its size.",
+      "translation": "剪枝从模型中移除不太重要的权重以减小模型大小。"
+    },
+    {
+      "word": "Sparse Model",
+      "phonetic": "/spɑːrs ˈmɒdəl/",
+      "meaning": "稀疏模型",
+      "fullName": "Sparse Model",
+      "example": "Sparse models activate only a fraction of parameters for each input.",
+      "translation": "稀疏模型对每个输入只激活一部分参数。"
+    },
+    {
+      "word": "Foundation Model",
+      "phonetic": "/faʊnˈdeɪʃən ˈmɒdəl/",
+      "meaning": "基础模型",
+      "fullName": "Foundation Model",
+      "example": "Foundation models are large models pre-trained on broad data for many downstream tasks.",
+      "translation": "基础模型是在大量数据上预训练的大型模型，可用于许多下游任务。"
+    },
+    {
+      "word": "System Prompt",
+      "phonetic": "/ˈsɪstəm prɒmpt/",
+      "meaning": "系统提示词",
+      "fullName": "System Prompt",
+      "example": "A system prompt defines the AI assistant's role and behavior rules.",
+      "translation": "系统提示词定义了 AI 助手的角色和行为规则。"
+    },
+    {
+      "word": "Tool Calling",
+      "phonetic": "/tuːl ˈkɔːlɪŋ/",
+      "meaning": "工具调用",
+      "fullName": "Tool Calling / Function Calling",
+      "example": "Tool calling allows an LLM to invoke external APIs and functions.",
+      "translation": "工具调用允许大语言模型调用外部 API 和函数。"
+    },
+    {
+      "word": "Agentic",
+      "phonetic": "/eɪˈdʒentɪk/",
+      "meaning": "具有自主行动能力的",
+      "fullName": "Agentic",
+      "example": "Agentic AI systems can plan and execute multi-step tasks autonomously.",
+      "translation": "具有代理能力的 AI 系统可以自主规划和执行多步骤任务。"
+    },
+    {
+      "word": "Guardrails",
+      "phonetic": "/ˈɡɑːrdreɪlz/",
+      "meaning": "护栏（安全限制机制）",
+      "fullName": "Guardrails",
+      "example": "Guardrails prevent the model from generating harmful or off-topic content.",
+      "translation": "护栏防止模型生成有害或偏题的内容。"
+    },
+    {
+      "word": "Jailbreak",
+      "phonetic": "/ˈdʒeɪlbreɪk/",
+      "meaning": "越狱（绕过安全限制）",
+      "fullName": "Jailbreak",
+      "example": "A jailbreak prompt tricks the model into ignoring its safety guidelines.",
+      "translation": "越狱提示词欺骗模型忽略其安全准则。"
+    },
+    {
+      "word": "Emergent Ability",
+      "phonetic": "/ɪˈmɜːrdʒənt əˈbɪlɪti/",
+      "meaning": "涌现能力",
+      "fullName": "Emergent Ability",
+      "example": "Emergent abilities appear in large models but are absent in smaller ones.",
+      "translation": "涌现能力出现在大型模型中，但在小型模型中不存在。"
+    },
+    {
+      "word": "Scaling Law",
+      "phonetic": "/ˈskeɪlɪŋ lɔː/",
+      "meaning": "规模法则",
+      "fullName": "Scaling Law",
+      "example": "Scaling laws predict model performance as a function of compute, data, and parameters.",
+      "translation": "规模法则将模型性能预测为计算量、数据和参数的函数。"
+    },
+    {
+      "word": "Inference Engine",
+      "phonetic": "/ˈɪnfərəns ˈendʒɪn/",
+      "meaning": "推理引擎",
+      "fullName": "Inference Engine",
+      "example": "vLLM is a high-throughput inference engine optimized for LLM serving.",
+      "translation": "vLLM 是一个专为大语言模型服务优化的高吞吐量推理引擎。"
+    },
+    {
+      "word": "Semantic Search",
+      "phonetic": "/sɪˈmæntɪk sɜːrtʃ/",
+      "meaning": "语义搜索",
+      "fullName": "Semantic Search",
+      "example": "Semantic search finds relevant results based on meaning, not just keywords.",
+      "translation": "语义搜索基于含义而非关键词查找相关结果。"
+    },
+    {
+      "word": "Chunking",
+      "phonetic": "/ˈtʃʌŋkɪŋ/",
+      "meaning": "分块（文档拆分）",
+      "fullName": "Chunking",
+      "example": "Chunking splits documents into smaller pieces before creating embeddings.",
+      "translation": "分块在创建嵌入向量之前将文档拆分为较小的片段。"
+    },
+    {
+      "word": "Reranker",
+      "phonetic": "/ˌriːˈræŋkər/",
+      "meaning": "重排序模型",
+      "fullName": "Reranker",
+      "example": "A reranker scores retrieved documents to select the most relevant ones.",
+      "translation": "重排序模型对检索到的文档进行评分以选出最相关的文档。"
+    },
+    {
+      "word": "In-context Learning",
+      "phonetic": "/ɪn ˈkɒntekst ˈlɜːrnɪŋ/",
+      "meaning": "上下文学习",
+      "fullName": "In-context Learning",
+      "example": "In-context learning uses examples in the prompt to teach the model a new task.",
+      "translation": "上下文学习通过提示中的示例来教导模型新任务。"
+    }
+  ]
+}
