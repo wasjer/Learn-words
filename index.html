@@ -528,7 +528,7 @@ let words        = [];
 let currentIndex = 0;
 let isFlipped    = false;
 let isAnimating  = false;
-let currentBank  = BANKS[0].file;
+let currentBank  = localStorage.getItem('selected_bank') || BANKS[0].file;
 
 // ═══════════════════════════════════════════════
 // DOM refs
@@ -583,6 +583,7 @@ async function loadBank(filename, forceUpdate = false) {
 
 async function initBank(filename) {
   currentBank = filename;
+  localStorage.setItem('selected_bank', filename);
   words = await loadBank(filename);
 
   // Restore position
