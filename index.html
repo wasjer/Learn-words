@@ -431,6 +431,21 @@
       padding: 10px 16px 14px;
     }
 
+    /* ── Progress badge ── */
+    #progress {
+      position: absolute;
+      top: var(--safe-top);
+      left: var(--safe-left);
+      padding: 14px 18px;
+      z-index: 10;
+      font-size: 12px;
+      font-weight: 500;
+      color: #cccccc;
+      letter-spacing: 0.3px;
+      pointer-events: none;
+      line-height: 22px;
+    }
+
     /* ── Swipe direction indicator ── */
     #swipe-indicator {
       position: fixed;
@@ -451,6 +466,7 @@
   <div id="topbar">
     <button id="menu-btn" aria-label="菜单">···</button>
   </div>
+  <div id="progress"></div>
 
   <div id="card-area">
     <!-- Front -->
@@ -562,6 +578,7 @@ const wordbankList = document.getElementById('wordbank-list');
 const updateBtn    = document.getElementById('update-btn');
 const updateStatus = document.getElementById('update-status');
 const updateIcon   = document.getElementById('update-icon');
+const progressEl   = document.getElementById('progress');
 
 // ═══════════════════════════════════════════════
 // Load word bank
@@ -623,6 +640,10 @@ function renderCard() {
 
   // Show/hide full-name line
   fullNameEl.style.display = w.fullName ? 'block' : 'none';
+
+  // Update progress badge
+  const remaining = words.length - 1 - currentIndex;
+  progressEl.textContent = remaining === 0 ? 'Done' : `${remaining} / ${words.length}`;
 
   showFace(false);
 }
