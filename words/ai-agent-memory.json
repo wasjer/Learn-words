@@ -1,0 +1,1205 @@
+{
+  "name": "AI Agent & Memory",
+  "words": [
+    {
+      "word": "Memory Stream",
+      "phonetic": "/ˈmem.ər.i striːm/",
+      "meaning": "记忆流",
+      "fullName": "Memory Stream (Generative Agents)",
+      "example": "The agent's memory stream stores all observations as timestamped records.",
+      "translation": "智能体的记忆流以时间戳记录的形式存储所有观察。"
+    },
+    {
+      "word": "Reflection",
+      "phonetic": "/rɪˈflek.ʃən/",
+      "meaning": "反思",
+      "fullName": "Reflection (Generative Agents)",
+      "example": "Through reflection, agents synthesize past memories into higher-level insights.",
+      "translation": "通过反思，智能体将过去的记忆综合为更高层次的洞察。"
+    },
+    {
+      "word": "Retrieval",
+      "phonetic": "/rɪˈtriː.vəl/",
+      "meaning": "检索",
+      "fullName": "Memory Retrieval",
+      "example": "Retrieval scores combine recency, importance, and relevance to surface relevant memories.",
+      "translation": "检索评分综合时近性、重要性和相关性来筛选出关联记忆。"
+    },
+    {
+      "word": "Planning",
+      "phonetic": "/ˈplæn.ɪŋ/",
+      "meaning": "规划",
+      "fullName": "Agent Planning",
+      "example": "Planning allows the agent to create a daily schedule and anticipate future actions.",
+      "translation": "规划使智能体能够制定日程安排并预判未来的行动。"
+    },
+    {
+      "word": "Reacting",
+      "phonetic": "/riˈæk.tɪŋ/",
+      "meaning": "反应",
+      "fullName": "Agent Reacting",
+      "example": "Reacting enables an agent to respond appropriately to unexpected events in the environment.",
+      "translation": "反应机制使智能体能够对环境中的意外事件作出恰当回应。"
+    },
+    {
+      "word": "Social Behavior",
+      "phonetic": "/ˈsoʊ.ʃəl bɪˈheɪ.vjər/",
+      "meaning": "社会行为",
+      "fullName": "Agent Social Behavior",
+      "example": "Generative agents exhibit emergent social behavior such as spreading rumors and forming friendships.",
+      "translation": "生成式智能体展现出涌现的社会行为，如传播谣言和结交朋友。"
+    },
+    {
+      "word": "Persona",
+      "phonetic": "/pərˈsoʊ.nə/",
+      "meaning": "人格",
+      "fullName": "Agent Persona",
+      "example": "Each agent has a persona defined by name, occupation, relationships, and personality traits.",
+      "translation": "每个智能体都有由姓名、职业、关系和性格特征定义的人格。"
+    },
+    {
+      "word": "Generative Agent",
+      "phonetic": "/ˈdʒen.ər.ə.tɪv ˈeɪ.dʒənt/",
+      "meaning": "生成式智能体",
+      "fullName": "Generative Agent (Stanford Smallville)",
+      "example": "Generative agents simulate believable human behavior in an interactive sandbox environment.",
+      "translation": "生成式智能体在交互式沙盒环境中模拟可信的人类行为。"
+    },
+    {
+      "word": "Observation",
+      "phonetic": "/ˌɒb.zəˈveɪ.ʃən/",
+      "meaning": "观察",
+      "fullName": "Agent Observation",
+      "example": "An observation is a natural language description of what an agent perceives in the world.",
+      "translation": "观察是对智能体感知到的世界的自然语言描述。"
+    },
+    {
+      "word": "Importance Score",
+      "phonetic": "/ɪmˈpɔːr.təns skɔːr/",
+      "meaning": "重要性评分",
+      "fullName": "Memory Importance Score",
+      "example": "The LLM assigns an importance score from 1 to 10 to each new memory.",
+      "translation": "大模型为每条新记忆分配 1 到 10 的重要性评分。"
+    },
+    {
+      "word": "Recency",
+      "phonetic": "/ˈriː.sən.si/",
+      "meaning": "时近性",
+      "fullName": "Memory Recency",
+      "example": "Recency weights recent memories higher so the agent prioritizes fresh information.",
+      "translation": "时近性对最新的记忆给予更高权重，使智能体优先处理新信息。"
+    },
+    {
+      "word": "Relevance",
+      "phonetic": "/ˈrel.ə.vəns/",
+      "meaning": "相关性",
+      "fullName": "Memory Relevance",
+      "example": "Relevance is computed via embedding similarity between the query and stored memories.",
+      "translation": "相关性通过查询与存储记忆之间的嵌入相似度来计算。"
+    },
+    {
+      "word": "Emergent Behavior",
+      "phonetic": "/ɪˈmɜːr.dʒənt bɪˈheɪ.vjər/",
+      "meaning": "涌现行为",
+      "fullName": "Emergent Social Behavior",
+      "example": "The party in Smallville was an emergent behavior that no agent was explicitly programmed to start.",
+      "translation": "Smallville 中的派对是一种涌现行为，没有任何智能体被明确编程去发起。"
+    },
+    {
+      "word": "Believability",
+      "phonetic": "/bɪˌliː.və.ˈbɪl.ɪ.ti/",
+      "meaning": "可信度",
+      "fullName": "Agent Believability",
+      "example": "Believability is the core metric: does the agent behave like a real person?",
+      "translation": "可信度是核心指标：智能体的行为是否像一个真实的人？"
+    },
+    {
+      "word": "Sandbox",
+      "phonetic": "/ˈsænd.bɒks/",
+      "meaning": "沙盒环境",
+      "fullName": "Simulation Sandbox",
+      "example": "Smallville is a sandbox world where 25 agents live, work, and interact autonomously.",
+      "translation": "Smallville 是一个沙盒世界，25 个智能体在其中自主地生活、工作和交互。"
+    },
+    {
+      "word": "Daily Routine",
+      "phonetic": "/ˈdeɪ.li ruːˈtiːn/",
+      "meaning": "日常作息",
+      "fullName": "Agent Daily Routine",
+      "example": "Agents generate a daily routine in the morning and adjust it based on new events.",
+      "translation": "智能体在早晨生成日常作息，并根据新事件进行调整。"
+    },
+    {
+      "word": "Backstory",
+      "phonetic": "/ˈbæk.stɔːr.i/",
+      "meaning": "背景故事",
+      "fullName": "Agent Backstory",
+      "example": "Each agent's backstory seeds the memory stream with initial knowledge about their life.",
+      "translation": "每个智能体的背景故事为其记忆流播种了关于其生活的初始知识。"
+    },
+    {
+      "word": "Trait",
+      "phonetic": "/treɪt/",
+      "meaning": "性格特征",
+      "fullName": "Personality Trait",
+      "example": "An agent with a curious trait will seek out new information more actively.",
+      "translation": "具有好奇特征的智能体会更主动地寻求新信息。"
+    },
+    {
+      "word": "World Simulation",
+      "phonetic": "/wɜːrld ˌsɪm.jʊˈleɪ.ʃən/",
+      "meaning": "世界模拟",
+      "fullName": "Agent World Simulation",
+      "example": "World simulation advances time so agents experience days, meals, and social events.",
+      "translation": "世界模拟推进时间，使智能体经历日夜、餐饮和社交活动。"
+    },
+    {
+      "word": "Relationship",
+      "phonetic": "/rɪˈleɪ.ʃən.ʃɪp/",
+      "meaning": "关系",
+      "fullName": "Agent Relationship",
+      "example": "Agents update their relationship map after every significant interaction.",
+      "translation": "智能体在每次重要互动后更新其关系图谱。"
+    },
+    {
+      "word": "Conversation History",
+      "phonetic": "/ˌkɒn.vəˈseɪ.ʃən ˈhɪs.tər.i/",
+      "meaning": "对话历史",
+      "fullName": "Agent Conversation History",
+      "example": "Conversation history is stored in the memory stream to inform future dialogue.",
+      "translation": "对话历史存储在记忆流中，为未来的对话提供参考。"
+    },
+    {
+      "word": "Identity",
+      "phonetic": "/aɪˈden.tɪ.ti/",
+      "meaning": "身份",
+      "fullName": "Agent Identity",
+      "example": "An agent's identity is the stable core that guides its decisions across changing contexts.",
+      "translation": "智能体的身份是引导其在不同情境下做出决策的稳定核心。"
+    },
+    {
+      "word": "Goal",
+      "phonetic": "/ɡoʊl/",
+      "meaning": "目标",
+      "fullName": "Agent Goal",
+      "example": "The agent sets a goal to finish a painting and allocates time blocks toward it.",
+      "translation": "智能体设定完成一幅画的目标，并为此分配时间块。"
+    },
+    {
+      "word": "Role-playing",
+      "phonetic": "/ˈroʊl ˌpleɪ.ɪŋ/",
+      "meaning": "角色扮演",
+      "fullName": "Agent Role-playing",
+      "example": "Role-playing frameworks let LLMs embody consistent characters across long interactions.",
+      "translation": "角色扮演框架让大模型在长时间交互中保持一致的角色形象。"
+    },
+    {
+      "word": "Social Network",
+      "phonetic": "/ˈsoʊ.ʃəl ˈnet.wɜːrk/",
+      "meaning": "社交网络",
+      "fullName": "Agent Social Network",
+      "example": "Agents form a social network by tracking who they know and how well.",
+      "translation": "智能体通过追踪认识的人及熟悉程度来构建社交网络。"
+    },
+    {
+      "word": "Schedule",
+      "phonetic": "/ˈʃed.juːl/",
+      "meaning": "日程",
+      "fullName": "Agent Schedule",
+      "example": "The agent decomposes its schedule into hour-level and then minute-level actions.",
+      "translation": "智能体将日程分解为小时级别，再细化为分钟级别的行动。"
+    },
+    {
+      "word": "NPC",
+      "phonetic": "/ˌen piː ˈsiː/",
+      "meaning": "非玩家角色",
+      "fullName": "Non-Player Character",
+      "example": "LLM-powered NPCs can hold coherent conversations and remember player interactions.",
+      "translation": "由大模型驱动的 NPC 能够进行连贯对话并记住玩家的交互。"
+    },
+    {
+      "word": "Prompt Injection",
+      "phonetic": "/prɒmpt ɪnˈdʒek.ʃən/",
+      "meaning": "提示词注入",
+      "fullName": "Prompt Injection Attack",
+      "example": "Prompt injection can hijack an agent's behavior by embedding malicious instructions in the environment.",
+      "translation": "提示词注入通过在环境中嵌入恶意指令来劫持智能体的行为。"
+    },
+    {
+      "word": "Agent Loop",
+      "phonetic": "/ˈeɪ.dʒənt luːp/",
+      "meaning": "智能体循环",
+      "fullName": "Agent Action Loop",
+      "example": "The agent loop cycles through perceive, think, and act until the task is complete.",
+      "translation": "智能体循环在感知、思考和行动之间循环，直到任务完成。"
+    },
+    {
+      "word": "Simulation Clock",
+      "phonetic": "/ˌsɪm.jʊˈleɪ.ʃən klɒk/",
+      "meaning": "模拟时钟",
+      "fullName": "Virtual Simulation Clock",
+      "example": "The simulation clock compresses one game day into a few minutes of real time.",
+      "translation": "模拟时钟将游戏中的一天压缩为现实中的几分钟。"
+    },
+    {
+      "word": "MemGPT",
+      "phonetic": "/mem dʒiː piː tiː/",
+      "meaning": "记忆增强型大模型",
+      "fullName": "Memory-GPT",
+      "example": "MemGPT manages tiered memory like an OS to overcome context window limits.",
+      "translation": "MemGPT 像操作系统一样管理分层记忆，以突破上下文窗口的限制。"
+    },
+    {
+      "word": "Working Context",
+      "phonetic": "/ˈwɜːr.kɪŋ ˈkɒn.tekst/",
+      "meaning": "工作上下文",
+      "fullName": "Working Context (MemGPT)",
+      "example": "Working context is the active portion of memory that fits within the LLM's context window.",
+      "translation": "工作上下文是适合大模型上下文窗口的活跃记忆部分。"
+    },
+    {
+      "word": "Archival Memory",
+      "phonetic": "/ɑːrˈkaɪ.vəl ˈmem.ər.i/",
+      "meaning": "档案记忆",
+      "fullName": "Archival Memory (MemGPT)",
+      "example": "Archival memory stores the full history of interactions outside the context window.",
+      "translation": "档案记忆在上下文窗口之外存储完整的交互历史。"
+    },
+    {
+      "word": "Recursive Summary",
+      "phonetic": "/rɪˈkɜːr.sɪv ˈsʌm.ər.i/",
+      "meaning": "递归摘要",
+      "fullName": "Recursive Summarization",
+      "example": "Recursive summary condenses older conversations so new context can be loaded.",
+      "translation": "递归摘要压缩旧对话内容，以便加载新的上下文。"
+    },
+    {
+      "word": "Paging",
+      "phonetic": "/ˈpeɪ.dʒɪŋ/",
+      "meaning": "分页",
+      "fullName": "Memory Paging (MemGPT)",
+      "example": "Paging swaps memory in and out of the context window, like virtual memory in an OS.",
+      "translation": "分页将记忆换入换出上下文窗口，类似操作系统中的虚拟内存。"
+    },
+    {
+      "word": "Function Call",
+      "phonetic": "/ˈfʌŋk.ʃən kɔːl/",
+      "meaning": "函数调用",
+      "fullName": "LLM Function Call",
+      "example": "MemGPT uses function calls to read, write, and search archival memory.",
+      "translation": "MemGPT 使用函数调用来读取、写入和搜索档案记忆。"
+    },
+    {
+      "word": "Interrupt",
+      "phonetic": "/ˌɪn.təˈrʌpt/",
+      "meaning": "中断",
+      "fullName": "Memory Interrupt",
+      "example": "An interrupt signals the agent to pause and update its memory before proceeding.",
+      "translation": "中断信号通知智能体暂停并在继续之前更新其记忆。"
+    },
+    {
+      "word": "Context Window",
+      "phonetic": "/ˈkɒn.tekst ˈwɪn.doʊ/",
+      "meaning": "上下文窗口",
+      "fullName": "LLM Context Window",
+      "example": "The context window limits how much text an LLM can process in a single pass.",
+      "translation": "上下文窗口限制了大模型在单次处理中能处理的文本量。"
+    },
+    {
+      "word": "Core Memory",
+      "phonetic": "/kɔːr ˈmem.ər.i/",
+      "meaning": "核心记忆",
+      "fullName": "Core Memory (MemGPT)",
+      "example": "Core memory holds the agent's persona and key facts about the user, always in context.",
+      "translation": "核心记忆保存智能体的人格和关于用户的关键事实，始终保持在上下文中。"
+    },
+    {
+      "word": "Recall Storage",
+      "phonetic": "/rɪˈkɔːl ˈstɔːr.ɪdʒ/",
+      "meaning": "回调存储",
+      "fullName": "Recall Storage (MemGPT)",
+      "example": "Recall storage keeps a searchable log of all past conversations.",
+      "translation": "回调存储保存所有过去对话的可搜索日志。"
+    },
+    {
+      "word": "External Storage",
+      "phonetic": "/ɪkˈstɜːr.nəl ˈstɔːr.ɪdʒ/",
+      "meaning": "外部存储",
+      "fullName": "External Storage (MemGPT)",
+      "example": "External storage holds large documents and data outside the LLM's direct context.",
+      "translation": "外部存储在大模型直接上下文之外保存大型文档和数据。"
+    },
+    {
+      "word": "Memory Compression",
+      "phonetic": "/ˈmem.ər.i kəmˈpreʃ.ən/",
+      "meaning": "记忆压缩",
+      "fullName": "Memory Compression",
+      "example": "Memory compression summarizes old interactions to free up context window space.",
+      "translation": "记忆压缩通过总结旧交互来释放上下文窗口空间。"
+    },
+    {
+      "word": "Self-editing Memory",
+      "phonetic": "/self ˈed.ɪ.tɪŋ ˈmem.ər.i/",
+      "meaning": "自编辑记忆",
+      "fullName": "Self-editing Memory (MemGPT)",
+      "example": "Self-editing memory allows the agent to update its own persona block over time.",
+      "translation": "自编辑记忆允许智能体随着时间推移更新自己的人格块。"
+    },
+    {
+      "word": "Persona Block",
+      "phonetic": "/pərˈsoʊ.nə blɒk/",
+      "meaning": "人格块",
+      "fullName": "Persona Memory Block",
+      "example": "The persona block defines the agent's name, role, and behavioral guidelines.",
+      "translation": "人格块定义了智能体的名称、角色和行为准则。"
+    },
+    {
+      "word": "Human Block",
+      "phonetic": "/ˈhjuː.mən blɒk/",
+      "meaning": "用户信息块",
+      "fullName": "Human Memory Block",
+      "example": "The human block stores key facts about the user that the agent should always remember.",
+      "translation": "用户信息块存储智能体应始终记住的关于用户的关键事实。"
+    },
+    {
+      "word": "Memory Overflow",
+      "phonetic": "/ˈmem.ər.i ˌoʊ.vərˈfloʊ/",
+      "meaning": "记忆溢出",
+      "fullName": "Context Memory Overflow",
+      "example": "When memory overflow occurs, older content is paged out to archival storage.",
+      "translation": "当记忆溢出时，较旧的内容被换出到档案存储中。"
+    },
+    {
+      "word": "Memory Append",
+      "phonetic": "/ˈmem.ər.i əˈpend/",
+      "meaning": "追加记忆",
+      "fullName": "Archival Memory Append",
+      "example": "Memory append adds new information to the archival store without overwriting existing data.",
+      "translation": "追加记忆在不覆盖现有数据的情况下向档案存储中添加新信息。"
+    },
+    {
+      "word": "Letta",
+      "phonetic": "/ˈlet.ə/",
+      "meaning": "Letta 框架",
+      "fullName": "Letta (formerly MemGPT)",
+      "example": "Letta is the open-source framework evolved from MemGPT for building stateful LLM agents.",
+      "translation": "Letta 是从 MemGPT 演化而来的开源框架，用于构建有状态的大模型智能体。"
+    },
+    {
+      "word": "OS for LLM",
+      "phonetic": "/oʊ es fɔːr el el em/",
+      "meaning": "大模型操作系统",
+      "fullName": "Operating System for LLM",
+      "example": "MemGPT treats the LLM as a CPU and implements an OS-like memory hierarchy around it.",
+      "translation": "MemGPT 将大模型视为 CPU，并在其周围实现类似操作系统的记忆层级。"
+    },
+    {
+      "word": "Virtual Context",
+      "phonetic": "/ˈvɜːr.tʃu.əl ˈkɒn.tekst/",
+      "meaning": "虚拟上下文",
+      "fullName": "Virtual Context Management",
+      "example": "Virtual context extends the effective memory of an LLM far beyond its physical context window.",
+      "translation": "虚拟上下文将大模型的有效记忆远远扩展到其物理上下文窗口之外。"
+    },
+    {
+      "word": "Long-term Memory",
+      "phonetic": "/lɒŋ tɜːrm ˈmem.ər.i/",
+      "meaning": "长期记忆",
+      "fullName": "Long-term Memory",
+      "example": "Long-term memory allows an AI companion to recall events from months-old conversations.",
+      "translation": "长期记忆使 AI 伴侣能够回忆起数月前对话中的事件。"
+    },
+    {
+      "word": "Short-term Memory",
+      "phonetic": "/ʃɔːrt tɜːrm ˈmem.ər.i/",
+      "meaning": "短期记忆",
+      "fullName": "Short-term Memory",
+      "example": "Short-term memory corresponds to the active context window in LLM-based systems.",
+      "translation": "短期记忆对应大模型系统中的活跃上下文窗口。"
+    },
+    {
+      "word": "Working Memory",
+      "phonetic": "/ˈwɜːr.kɪŋ ˈmem.ər.i/",
+      "meaning": "工作记忆",
+      "fullName": "Working Memory",
+      "example": "Working memory holds the immediate information needed to complete the current task.",
+      "translation": "工作记忆保存完成当前任务所需的即时信息。"
+    },
+    {
+      "word": "Episodic Memory",
+      "phonetic": "/ˌep.ɪˈsɒd.ɪk ˈmem.ər.i/",
+      "meaning": "情节记忆",
+      "fullName": "Episodic Memory",
+      "example": "Episodic memory stores specific events with their context, time, and place.",
+      "translation": "情节记忆存储具有上下文、时间和地点的具体事件。"
+    },
+    {
+      "word": "Semantic Memory",
+      "phonetic": "/sɪˈmæn.tɪk ˈmem.ər.i/",
+      "meaning": "语义记忆",
+      "fullName": "Semantic Memory",
+      "example": "Semantic memory holds general knowledge and facts, independent of when they were learned.",
+      "translation": "语义记忆保存一般知识和事实，与学习时间无关。"
+    },
+    {
+      "word": "Procedural Memory",
+      "phonetic": "/prəˈsiː.dʒər.əl ˈmem.ər.i/",
+      "meaning": "程序性记忆",
+      "fullName": "Procedural Memory",
+      "example": "Procedural memory encodes how to perform tasks, like how to call a tool or write code.",
+      "translation": "程序性记忆编码如何执行任务，例如如何调用工具或编写代码。"
+    },
+    {
+      "word": "Episodic Buffer",
+      "phonetic": "/ˌep.ɪˈsɒd.ɪk ˈbʌf.ər/",
+      "meaning": "情节缓冲区",
+      "fullName": "Episodic Buffer",
+      "example": "The episodic buffer temporarily binds information from different memory systems.",
+      "translation": "情节缓冲区暂时整合来自不同记忆系统的信息。"
+    },
+    {
+      "word": "Memory Consolidation",
+      "phonetic": "/ˈmem.ər.i kənˌsɒl.ɪˈdeɪ.ʃən/",
+      "meaning": "记忆巩固",
+      "fullName": "Memory Consolidation",
+      "example": "Memory consolidation converts short-term observations into stable long-term knowledge.",
+      "translation": "记忆巩固将短期观察转化为稳定的长期知识。"
+    },
+    {
+      "word": "Memory Decay",
+      "phonetic": "/ˈmem.ər.i dɪˈkeɪ/",
+      "meaning": "记忆衰减",
+      "fullName": "Memory Decay",
+      "example": "Memory decay reduces the retrieval score of memories that haven't been accessed recently.",
+      "translation": "记忆衰减降低最近未被访问的记忆的检索评分。"
+    },
+    {
+      "word": "Forgetting Curve",
+      "phonetic": "/fərˈɡet.ɪŋ kɜːrv/",
+      "meaning": "遗忘曲线",
+      "fullName": "Ebbinghaus Forgetting Curve",
+      "example": "The forgetting curve shows memory retention drops sharply without review.",
+      "translation": "遗忘曲线显示，没有复习的情况下记忆保留率会急剧下降。"
+    },
+    {
+      "word": "Spaced Repetition",
+      "phonetic": "/speɪst ˌrep.ɪˈtɪʃ.ən/",
+      "meaning": "间隔重复",
+      "fullName": "Spaced Repetition",
+      "example": "Spaced repetition schedules reviews just before the memory is about to be forgotten.",
+      "translation": "间隔重复在记忆即将被遗忘之前安排复习。"
+    },
+    {
+      "word": "Active Recall",
+      "phonetic": "/ˈæk.tɪv rɪˈkɔːl/",
+      "meaning": "主动回忆",
+      "fullName": "Active Recall",
+      "example": "Active recall forces the brain to retrieve information, strengthening memory traces.",
+      "translation": "主动回忆迫使大脑检索信息，从而加强记忆痕迹。"
+    },
+    {
+      "word": "Associative Memory",
+      "phonetic": "/əˈsoʊ.si.ə.tɪv ˈmem.ər.i/",
+      "meaning": "联想记忆",
+      "fullName": "Associative Memory",
+      "example": "Associative memory links new concepts to existing knowledge to improve retention.",
+      "translation": "联想记忆将新概念与现有知识关联起来以提高记忆保留率。"
+    },
+    {
+      "word": "Memory Index",
+      "phonetic": "/ˈmem.ər.i ˈɪn.deks/",
+      "meaning": "记忆索引",
+      "fullName": "Memory Index",
+      "example": "A memory index allows fast lookup of relevant memories by topic or keyword.",
+      "translation": "记忆索引允许按主题或关键词快速查找相关记忆。"
+    },
+    {
+      "word": "Temporal Memory",
+      "phonetic": "/ˈtem.pər.əl ˈmem.ər.i/",
+      "meaning": "时序记忆",
+      "fullName": "Temporal Memory",
+      "example": "Temporal memory tracks the order and timing of past events to support reasoning.",
+      "translation": "时序记忆跟踪过去事件的顺序和时间，以支持推理。"
+    },
+    {
+      "word": "Implicit Memory",
+      "phonetic": "/ɪmˈplɪs.ɪt ˈmem.ər.i/",
+      "meaning": "内隐记忆",
+      "fullName": "Implicit Memory",
+      "example": "Implicit memory stores skills and habits the agent uses without conscious recall.",
+      "translation": "内隐记忆存储智能体无需刻意回忆即可使用的技能和习惯。"
+    },
+    {
+      "word": "Explicit Memory",
+      "phonetic": "/ɪkˈsplɪs.ɪt ˈmem.ər.i/",
+      "meaning": "外显记忆",
+      "fullName": "Explicit Memory",
+      "example": "Explicit memory can be consciously recalled, such as a user's stated preferences.",
+      "translation": "外显记忆可以被有意识地回忆，例如用户明确表达的偏好。"
+    },
+    {
+      "word": "AI Agent",
+      "phonetic": "/eɪ aɪ ˈeɪ.dʒənt/",
+      "meaning": "AI 智能体",
+      "fullName": "Artificial Intelligence Agent",
+      "example": "An AI agent perceives its environment, reasons about it, and takes autonomous actions.",
+      "translation": "AI 智能体感知环境，对其进行推理，并采取自主行动。"
+    },
+    {
+      "word": "Autonomous Agent",
+      "phonetic": "/ɔːˈtɒn.ə.məs ˈeɪ.dʒənt/",
+      "meaning": "自主智能体",
+      "fullName": "Autonomous AI Agent",
+      "example": "An autonomous agent can complete multi-step tasks without human intervention.",
+      "translation": "自主智能体无需人工干预即可完成多步骤任务。"
+    },
+    {
+      "word": "Multi-agent System",
+      "phonetic": "/ˈmʌl.ti ˈeɪ.dʒənt ˈsɪs.təm/",
+      "meaning": "多智能体系统",
+      "fullName": "Multi-agent System",
+      "example": "In a multi-agent system, agents collaborate or compete to achieve complex goals.",
+      "translation": "在多智能体系统中，智能体协作或竞争以实现复杂目标。"
+    },
+    {
+      "word": "Agent Orchestration",
+      "phonetic": "/ˈeɪ.dʒənt ˌɔːr.kɪˈstreɪ.ʃən/",
+      "meaning": "智能体编排",
+      "fullName": "Agent Orchestration",
+      "example": "Agent orchestration coordinates multiple specialized agents to complete a complex task.",
+      "translation": "智能体编排协调多个专业智能体来完成复杂任务。"
+    },
+    {
+      "word": "Task Decomposition",
+      "phonetic": "/tɑːsk ˌdiː.kɒm.pəˈzɪʃ.ən/",
+      "meaning": "任务分解",
+      "fullName": "Task Decomposition",
+      "example": "Task decomposition breaks a complex goal into smaller, manageable sub-tasks.",
+      "translation": "任务分解将复杂目标分解为更小、更易管理的子任务。"
+    },
+    {
+      "word": "ReAct",
+      "phonetic": "/riˈækt/",
+      "meaning": "推理与行动",
+      "fullName": "Reasoning and Acting",
+      "example": "ReAct interleaves chain-of-thought reasoning with tool actions to solve tasks.",
+      "translation": "ReAct 将思维链推理与工具操作交织在一起来解决任务。"
+    },
+    {
+      "word": "Chain-of-Thought",
+      "phonetic": "/tʃeɪn əv θɔːt/",
+      "meaning": "思维链",
+      "fullName": "Chain-of-Thought Prompting",
+      "example": "Chain-of-thought prompting guides the model to reason step by step before answering.",
+      "translation": "思维链提示引导模型在回答之前一步一步地进行推理。"
+    },
+    {
+      "word": "Tool Use",
+      "phonetic": "/tuːl juːz/",
+      "meaning": "工具使用",
+      "fullName": "LLM Tool Use",
+      "example": "Tool use lets an agent call external APIs, run code, or search the web.",
+      "translation": "工具使用使智能体能够调用外部 API、运行代码或搜索网页。"
+    },
+    {
+      "word": "Tool Calling",
+      "phonetic": "/tuːl ˈkɔːl.ɪŋ/",
+      "meaning": "工具调用",
+      "fullName": "Tool Calling (Function Calling)",
+      "example": "Tool calling is the structured mechanism by which an LLM invokes external functions.",
+      "translation": "工具调用是大模型调用外部函数的结构化机制。"
+    },
+    {
+      "word": "Scratchpad",
+      "phonetic": "/ˈskrætʃ.pæd/",
+      "meaning": "草稿本",
+      "fullName": "Agent Scratchpad",
+      "example": "The scratchpad stores intermediate reasoning steps before the agent commits to an action.",
+      "translation": "草稿本存储智能体在确定行动之前的中间推理步骤。"
+    },
+    {
+      "word": "Self-reflection",
+      "phonetic": "/self rɪˈflek.ʃən/",
+      "meaning": "自我反思",
+      "fullName": "Agent Self-reflection",
+      "example": "Self-reflection allows the agent to critique its own outputs and improve iteratively.",
+      "translation": "自我反思使智能体能够评价自身的输出并迭代改进。"
+    },
+    {
+      "word": "Inner Monologue",
+      "phonetic": "/ˈɪn.ər ˈmɒn.ə.lɒɡ/",
+      "meaning": "内心独白",
+      "fullName": "Agent Inner Monologue",
+      "example": "The inner monologue is the agent's private reasoning trace, hidden from the user.",
+      "translation": "内心独白是智能体的私密推理痕迹，对用户隐藏。"
+    },
+    {
+      "word": "Cognitive Architecture",
+      "phonetic": "/ˈkɒɡ.nɪ.tɪv ˈɑːr.kɪ.tek.tʃər/",
+      "meaning": "认知架构",
+      "fullName": "Cognitive Architecture",
+      "example": "A cognitive architecture defines how memory, reasoning, and action are organized in an agent.",
+      "translation": "认知架构定义了智能体中记忆、推理和行动的组织方式。"
+    },
+    {
+      "word": "BDI",
+      "phonetic": "/biː diː aɪ/",
+      "meaning": "信念-欲望-意图",
+      "fullName": "Belief-Desire-Intention",
+      "example": "The BDI model structures an agent's mental state into beliefs, desires, and intentions.",
+      "translation": "BDI 模型将智能体的心理状态结构化为信念、欲望和意图。"
+    },
+    {
+      "word": "Belief",
+      "phonetic": "/bɪˈliːf/",
+      "meaning": "信念",
+      "fullName": "Agent Belief (BDI)",
+      "example": "An agent's beliefs represent its current understanding of the world state.",
+      "translation": "智能体的信念代表其对世界状态的当前理解。"
+    },
+    {
+      "word": "Intention",
+      "phonetic": "/ɪnˈten.ʃən/",
+      "meaning": "意图",
+      "fullName": "Agent Intention (BDI)",
+      "example": "Intention is the committed plan the agent will execute to achieve its goal.",
+      "translation": "意图是智能体为实现目标而承诺执行的计划。"
+    },
+    {
+      "word": "Planning Horizon",
+      "phonetic": "/ˈplæn.ɪŋ həˈraɪ.zən/",
+      "meaning": "规划视野",
+      "fullName": "Planning Horizon",
+      "example": "A longer planning horizon lets the agent consider consequences further into the future.",
+      "translation": "更长的规划视野使智能体能够考虑更远的未来后果。"
+    },
+    {
+      "word": "LangGraph",
+      "phonetic": "/læŋ ɡræf/",
+      "meaning": "图式智能体框架",
+      "fullName": "LangGraph",
+      "example": "LangGraph models agent workflows as stateful graphs with cycles and branching.",
+      "translation": "LangGraph 将智能体工作流建模为带有循环和分支的有状态图。"
+    },
+    {
+      "word": "AutoGPT",
+      "phonetic": "/ˈɔː.toʊ dʒiː piː tiː/",
+      "meaning": "自主 GPT 智能体",
+      "fullName": "Autonomous GPT Agent",
+      "example": "AutoGPT was one of the first agents to autonomously break goals into sub-tasks.",
+      "translation": "AutoGPT 是最早能自主将目标分解为子任务的智能体之一。"
+    },
+    {
+      "word": "CrewAI",
+      "phonetic": "/kruː eɪ aɪ/",
+      "meaning": "团队 AI 框架",
+      "fullName": "CrewAI",
+      "example": "CrewAI assigns roles to multiple agents so they collaborate like a professional crew.",
+      "translation": "CrewAI 为多个智能体分配角色，使其像专业团队一样协作。"
+    },
+    {
+      "word": "State",
+      "phonetic": "/steɪt/",
+      "meaning": "状态",
+      "fullName": "Agent State",
+      "example": "The agent state captures all relevant information needed to continue a task.",
+      "translation": "智能体状态捕获继续任务所需的所有相关信息。"
+    },
+    {
+      "word": "Policy",
+      "phonetic": "/ˈpɒl.ɪ.si/",
+      "meaning": "策略",
+      "fullName": "Agent Policy",
+      "example": "A policy maps observed states to actions to maximize expected reward.",
+      "translation": "策略将观测到的状态映射到行动，以最大化预期奖励。"
+    },
+    {
+      "word": "Reward",
+      "phonetic": "/rɪˈwɔːrd/",
+      "meaning": "奖励",
+      "fullName": "Reinforcement Learning Reward",
+      "example": "The reward signal tells the agent how well it performed after taking an action.",
+      "translation": "奖励信号告诉智能体在采取行动后表现如何。"
+    },
+    {
+      "word": "Exploration",
+      "phonetic": "/ˌek.spləˈreɪ.ʃən/",
+      "meaning": "探索",
+      "fullName": "Exploration (RL)",
+      "example": "Exploration encourages the agent to try new actions to discover better strategies.",
+      "translation": "探索鼓励智能体尝试新行动以发现更好的策略。"
+    },
+    {
+      "word": "Subagent",
+      "phonetic": "/ˈsʌb.eɪ.dʒənt/",
+      "meaning": "子智能体",
+      "fullName": "Subagent",
+      "example": "A subagent handles a specific sub-task delegated by the orchestrator agent.",
+      "translation": "子智能体处理由编排智能体委派的特定子任务。"
+    },
+    {
+      "word": "AI Companion",
+      "phonetic": "/eɪ aɪ kəmˈpæn.jən/",
+      "meaning": "AI 伴侣",
+      "fullName": "AI Companion",
+      "example": "An AI companion builds a persistent relationship with the user over time.",
+      "translation": "AI 伴侣与用户随着时间推移建立持久的关系。"
+    },
+    {
+      "word": "Emotional Support",
+      "phonetic": "/ɪˈmoʊ.ʃən.əl səˈpɔːrt/",
+      "meaning": "情感支持",
+      "fullName": "Emotional Support",
+      "example": "Emotional support AI listens, validates feelings, and offers comfort without judgment.",
+      "translation": "情感支持 AI 倾听、认可情感并提供不带评判的安慰。"
+    },
+    {
+      "word": "Empathy",
+      "phonetic": "/ˈem.pə.θi/",
+      "meaning": "共情",
+      "fullName": "Empathy",
+      "example": "Empathy in AI involves recognizing the user's emotional state and responding accordingly.",
+      "translation": "AI 中的共情包括识别用户的情绪状态并作出相应回应。"
+    },
+    {
+      "word": "Theory of Mind",
+      "phonetic": "/ˈθɪər.i əv maɪnd/",
+      "meaning": "心智理论",
+      "fullName": "Theory of Mind",
+      "example": "Theory of Mind allows an agent to infer what the user knows, wants, or feels.",
+      "translation": "心智理论使智能体能够推断用户知道什么、想要什么或感受什么。"
+    },
+    {
+      "word": "Social Intelligence",
+      "phonetic": "/ˈsoʊ.ʃəl ɪnˈtel.ɪ.dʒəns/",
+      "meaning": "社交智能",
+      "fullName": "Social Intelligence",
+      "example": "Social intelligence enables an agent to navigate complex interpersonal dynamics.",
+      "translation": "社交智能使智能体能够驾驭复杂的人际关系动态。"
+    },
+    {
+      "word": "Rapport",
+      "phonetic": "/ræˈpɔːr/",
+      "meaning": "亲和感",
+      "fullName": "Rapport",
+      "example": "Building rapport helps the AI companion feel more like a trusted friend than a tool.",
+      "translation": "建立亲和感有助于让 AI 伴侣感觉更像一个值得信赖的朋友而非工具。"
+    },
+    {
+      "word": "Persona Drift",
+      "phonetic": "/pərˈsoʊ.nə drɪft/",
+      "meaning": "人格漂移",
+      "fullName": "Persona Drift",
+      "example": "Persona drift occurs when an agent gradually deviates from its original character over time.",
+      "translation": "人格漂移是指智能体随时间推移逐渐偏离其原始人格设定。"
+    },
+    {
+      "word": "Emotional State",
+      "phonetic": "/ɪˈmoʊ.ʃən.əl steɪt/",
+      "meaning": "情绪状态",
+      "fullName": "Agent Emotional State",
+      "example": "The agent tracks its own emotional state and adjusts its tone of response accordingly.",
+      "translation": "智能体跟踪自身的情绪状态，并相应地调整回应的语气。"
+    },
+    {
+      "word": "Affective Computing",
+      "phonetic": "/əˈfek.tɪv kəmˈpjuː.tɪŋ/",
+      "meaning": "情感计算",
+      "fullName": "Affective Computing",
+      "example": "Affective computing aims to give machines the ability to recognize and simulate emotions.",
+      "translation": "情感计算旨在赋予机器识别和模拟情感的能力。"
+    },
+    {
+      "word": "Perspective-taking",
+      "phonetic": "/pərˈspek.tɪv ˌteɪ.kɪŋ/",
+      "meaning": "视角转换",
+      "fullName": "Perspective-taking",
+      "example": "Perspective-taking allows the agent to understand a situation from the user's point of view.",
+      "translation": "视角转换使智能体能够从用户的角度理解某一情境。"
+    },
+    {
+      "word": "Attachment",
+      "phonetic": "/əˈtætʃ.mənt/",
+      "meaning": "依附感",
+      "fullName": "User-AI Attachment",
+      "example": "Long-term AI companions can foster an attachment that makes users feel understood.",
+      "translation": "长期 AI 伴侣可以培养一种依附感，让用户感到被理解。"
+    },
+    {
+      "word": "User Modeling",
+      "phonetic": "/ˈjuː.zər ˈmɒd.əl.ɪŋ/",
+      "meaning": "用户建模",
+      "fullName": "User Modeling",
+      "example": "User modeling builds a dynamic profile of the user's preferences, habits, and goals.",
+      "translation": "用户建模构建用户偏好、习惯和目标的动态画像。"
+    },
+    {
+      "word": "Personalization",
+      "phonetic": "/ˌpɜːr.sən.əl.ɪˈzeɪ.ʃən/",
+      "meaning": "个性化",
+      "fullName": "Personalization",
+      "example": "Personalization tailors the agent's responses to the individual user's history and preferences.",
+      "translation": "个性化根据用户的历史和偏好定制智能体的回应。"
+    },
+    {
+      "word": "Adaptive Dialogue",
+      "phonetic": "/əˈdæp.tɪv ˈdaɪ.ə.lɒɡ/",
+      "meaning": "自适应对话",
+      "fullName": "Adaptive Dialogue",
+      "example": "Adaptive dialogue adjusts vocabulary and tone based on the user's expertise level.",
+      "translation": "自适应对话根据用户的专业水平调整词汇和语气。"
+    },
+    {
+      "word": "Character Consistency",
+      "phonetic": "/ˈkær.ɪk.tər kənˈsɪs.tən.si/",
+      "meaning": "角色一致性",
+      "fullName": "Character Consistency",
+      "example": "Character consistency ensures the agent's personality remains stable across many sessions.",
+      "translation": "角色一致性确保智能体的人格在多个会话中保持稳定。"
+    },
+    {
+      "word": "Social Cue",
+      "phonetic": "/ˈsoʊ.ʃəl kjuː/",
+      "meaning": "社交线索",
+      "fullName": "Social Cue",
+      "example": "Detecting social cues like hesitation or humor helps the agent respond more naturally.",
+      "translation": "检测犹豫或幽默等社交线索有助于智能体更自然地回应。"
+    },
+    {
+      "word": "Hallucination",
+      "phonetic": "/həˌluː.sɪˈneɪ.ʃən/",
+      "meaning": "幻觉",
+      "fullName": "LLM Hallucination",
+      "example": "Hallucination occurs when an LLM confidently generates false or fabricated information.",
+      "translation": "幻觉是指大模型自信地生成虚假或捏造信息的现象。"
+    },
+    {
+      "word": "Grounding",
+      "phonetic": "/ˈɡraʊn.dɪŋ/",
+      "meaning": "接地",
+      "fullName": "Grounding (LLM)",
+      "example": "Grounding links the model's outputs to verified facts or real-world data sources.",
+      "translation": "接地将模型的输出与经过验证的事实或现实世界数据源关联起来。"
+    },
+    {
+      "word": "Vector Database",
+      "phonetic": "/ˈvek.tər ˈdeɪ.tə.beɪs/",
+      "meaning": "向量数据库",
+      "fullName": "Vector Database",
+      "example": "A vector database stores embeddings and enables fast similarity search over millions of entries.",
+      "translation": "向量数据库存储嵌入向量，并支持对数百万条记录进行快速相似性搜索。"
+    },
+    {
+      "word": "Embedding",
+      "phonetic": "/ɪmˈbed.ɪŋ/",
+      "meaning": "嵌入",
+      "fullName": "Text Embedding",
+      "example": "An embedding converts text into a dense numerical vector that captures semantic meaning.",
+      "translation": "嵌入将文本转换为捕获语义含义的密集数值向量。"
+    },
+    {
+      "word": "Semantic Search",
+      "phonetic": "/sɪˈmæn.tɪk sɜːrtʃ/",
+      "meaning": "语义搜索",
+      "fullName": "Semantic Search",
+      "example": "Semantic search finds relevant documents by meaning rather than exact keyword matching.",
+      "translation": "语义搜索通过含义而非精确关键词匹配来查找相关文档。"
+    },
+    {
+      "word": "Similarity Search",
+      "phonetic": "/ˌsɪm.ɪˈlær.ɪ.ti sɜːrtʃ/",
+      "meaning": "相似性搜索",
+      "fullName": "Similarity Search",
+      "example": "Similarity search retrieves the top-k embeddings closest to the query vector.",
+      "translation": "相似性搜索检索与查询向量最接近的前 k 个嵌入。"
+    },
+    {
+      "word": "Cosine Similarity",
+      "phonetic": "/ˈkoʊ.saɪn ˌsɪm.ɪˈlær.ɪ.ti/",
+      "meaning": "余弦相似度",
+      "fullName": "Cosine Similarity",
+      "example": "Cosine similarity measures the angle between two vectors to determine how similar they are.",
+      "translation": "余弦相似度通过测量两个向量之间的夹角来确定它们的相似程度。"
+    },
+    {
+      "word": "Dense Retrieval",
+      "phonetic": "/dens rɪˈtriː.vəl/",
+      "meaning": "稠密检索",
+      "fullName": "Dense Retrieval",
+      "example": "Dense retrieval uses neural embeddings instead of keyword overlap to find relevant passages.",
+      "translation": "稠密检索使用神经嵌入而非关键词重叠来查找相关段落。"
+    },
+    {
+      "word": "Hybrid Search",
+      "phonetic": "/ˈhaɪ.brɪd sɜːrtʃ/",
+      "meaning": "混合搜索",
+      "fullName": "Hybrid Search",
+      "example": "Hybrid search combines keyword-based and semantic search for better retrieval accuracy.",
+      "translation": "混合搜索结合基于关键词和语义的搜索以提高检索准确性。"
+    },
+    {
+      "word": "FAISS",
+      "phonetic": "/feɪs/",
+      "meaning": "向量相似性搜索库",
+      "fullName": "Facebook AI Similarity Search",
+      "example": "FAISS indexes billions of vectors for millisecond-level nearest-neighbor search.",
+      "translation": "FAISS 对数十亿向量建立索引，实现毫秒级的最近邻搜索。"
+    },
+    {
+      "word": "Chunking",
+      "phonetic": "/ˈtʃʌŋ.kɪŋ/",
+      "meaning": "文本分块",
+      "fullName": "Document Chunking",
+      "example": "Chunking splits long documents into smaller pieces before embedding them into a vector store.",
+      "translation": "分块在将长文档嵌入向量存储之前将其拆分为较小的片段。"
+    },
+    {
+      "word": "Reranking",
+      "phonetic": "/riː ˈræŋ.kɪŋ/",
+      "meaning": "重排序",
+      "fullName": "Reranking",
+      "example": "Reranking uses a cross-encoder to reorder retrieved candidates by relevance.",
+      "translation": "重排序使用交叉编码器按相关性对检索到的候选项重新排序。"
+    },
+    {
+      "word": "Knowledge Graph",
+      "phonetic": "/ˈnɒl.ɪdʒ ɡræf/",
+      "meaning": "知识图谱",
+      "fullName": "Knowledge Graph",
+      "example": "A knowledge graph stores entities and their relationships for structured reasoning.",
+      "translation": "知识图谱存储实体及其关系，用于结构化推理。"
+    },
+    {
+      "word": "Attention Mechanism",
+      "phonetic": "/əˈten.ʃən ˈmek.ə.nɪ.zəm/",
+      "meaning": "注意力机制",
+      "fullName": "Attention Mechanism",
+      "example": "The attention mechanism lets the model focus on relevant parts of the input when generating output.",
+      "translation": "注意力机制让模型在生成输出时专注于输入的相关部分。"
+    },
+    {
+      "word": "Prompt Engineering",
+      "phonetic": "/prɒmpt ˌen.dʒɪˈnɪər.ɪŋ/",
+      "meaning": "提示词工程",
+      "fullName": "Prompt Engineering",
+      "example": "Prompt engineering crafts instructions to steer LLM behavior toward the desired output.",
+      "translation": "提示词工程通过精心设计指令来引导大模型输出期望的结果。"
+    },
+    {
+      "word": "System Prompt",
+      "phonetic": "/ˈsɪs.təm prɒmpt/",
+      "meaning": "系统提示词",
+      "fullName": "System Prompt",
+      "example": "The system prompt sets the agent's role, tone, and constraints before any user message.",
+      "translation": "系统提示词在任何用户消息之前设定智能体的角色、语气和约束。"
+    },
+    {
+      "word": "Few-shot Learning",
+      "phonetic": "/fjuː ʃɒt ˈlɜːr.nɪŋ/",
+      "meaning": "少样本学习",
+      "fullName": "Few-shot Learning",
+      "example": "Few-shot learning provides examples in the prompt so the model generalizes to new tasks.",
+      "translation": "少样本学习在提示词中提供示例，使模型能够泛化到新任务。"
+    },
+    {
+      "word": "Markov Decision Process",
+      "phonetic": "/ˈmɑːr.kɒv dɪˈsɪʒ.ən ˈprɒ.ses/",
+      "meaning": "马尔可夫决策过程",
+      "fullName": "Markov Decision Process",
+      "example": "MDP provides the mathematical framework for modeling sequential decision-making in agents.",
+      "translation": "MDP 为智能体中的序列决策建模提供了数学框架。"
+    },
+    {
+      "word": "Agentic Loop",
+      "phonetic": "/eɪˈdʒen.tɪk luːp/",
+      "meaning": "智能体执行循环",
+      "fullName": "Agentic Execution Loop",
+      "example": "The agentic loop runs observe–think–act cycles until the goal is reached or the agent gives up.",
+      "translation": "智能体执行循环持续运行观察–思考–行动周期，直到达成目标或智能体放弃。"
+    },
+    {
+      "word": "Reflection Trigger",
+      "phonetic": "/rɪˈflek.ʃən ˈtrɪɡ.ər/",
+      "meaning": "反思触发器",
+      "fullName": "Reflection Trigger",
+      "example": "A reflection trigger fires when the cumulative importance of new memories exceeds a threshold.",
+      "translation": "当新记忆的累计重要性超过阈值时，反思触发器被激活。"
+    },
+    {
+      "word": "Memory Score",
+      "phonetic": "/ˈmem.ər.i skɔːr/",
+      "meaning": "记忆评分",
+      "fullName": "Memory Retrieval Score",
+      "example": "The memory score combines recency, importance, and relevance into a single ranking value.",
+      "translation": "记忆评分将时近性、重要性和相关性综合为单一排名值。"
+    },
+    {
+      "word": "Conversation Buffer",
+      "phonetic": "/ˌkɒn.vəˈseɪ.ʃən ˈbʌf.ər/",
+      "meaning": "对话缓冲区",
+      "fullName": "Conversation Buffer Memory",
+      "example": "A conversation buffer keeps the last N messages in context for coherent multi-turn dialogue.",
+      "translation": "对话缓冲区在上下文中保留最近 N 条消息，以实现连贯的多轮对话。"
+    },
+    {
+      "word": "Stateful Agent",
+      "phonetic": "/ˈsteɪt.fəl ˈeɪ.dʒənt/",
+      "meaning": "有状态智能体",
+      "fullName": "Stateful Agent",
+      "example": "A stateful agent retains memory across sessions, unlike a stateless chatbot.",
+      "translation": "有状态智能体跨会话保留记忆，不同于无状态聊天机器人。"
+    },
+    {
+      "word": "Groundedness",
+      "phonetic": "/ˈɡraʊn.dɪd.nəs/",
+      "meaning": "事实性",
+      "fullName": "Response Groundedness",
+      "example": "Groundedness measures how well an AI's response is supported by retrieved source documents.",
+      "translation": "事实性衡量 AI 回应在多大程度上得到检索到的源文档的支持。"
+    },
+    {
+      "word": "Iterative Refinement",
+      "phonetic": "/ˈɪt.ər.ə.tɪv rɪˈfaɪn.mənt/",
+      "meaning": "迭代优化",
+      "fullName": "Iterative Refinement",
+      "example": "Iterative refinement loops the agent's output back as input until quality criteria are met.",
+      "translation": "迭代优化将智能体的输出循环作为输入，直到满足质量标准。"
+    },
+    {
+      "word": "Empathetic Response",
+      "phonetic": "/emˈpæθ.ə.tɪk rɪˈspɒns/",
+      "meaning": "共情回应",
+      "fullName": "Empathetic Response",
+      "example": "An empathetic response acknowledges the user's feelings before offering advice.",
+      "translation": "共情回应在提供建议之前先承认用户的感受。"
+    },
+    {
+      "word": "Contextual Awareness",
+      "phonetic": "/kənˈteks.tʃu.əl əˈweər.nəs/",
+      "meaning": "上下文感知",
+      "fullName": "Contextual Awareness",
+      "example": "Contextual awareness lets the agent adapt its responses based on prior conversation history.",
+      "translation": "上下文感知让智能体根据之前的对话历史调整其回应。"
+    },
+    {
+      "word": "Preference Learning",
+      "phonetic": "/ˈpref.ər.əns ˈlɜːr.nɪŋ/",
+      "meaning": "偏好学习",
+      "fullName": "Preference Learning",
+      "example": "Preference learning infers user preferences from feedback and adjusts future responses.",
+      "translation": "偏好学习从反馈中推断用户偏好并调整未来的回应。"
+    },
+    {
+      "word": "Memory-augmented",
+      "phonetic": "/ˈmem.ər.i ˈɔːɡ.men.tɪd/",
+      "meaning": "记忆增强",
+      "fullName": "Memory-augmented LLM",
+      "example": "A memory-augmented LLM can recall specific details from past interactions across sessions.",
+      "translation": "记忆增强型大模型能够回忆起跨会话的过去交互中的具体细节。"
+    },
+    {
+      "word": "Retrieval Score",
+      "phonetic": "/rɪˈtriː.vəl skɔːr/",
+      "meaning": "检索得分",
+      "fullName": "Memory Retrieval Score",
+      "example": "The retrieval score ranks memories by combining recency, importance, and semantic relevance.",
+      "translation": "检索得分通过综合时近性、重要性和语义相关性对记忆进行排名。"
+    },
+    {
+      "word": "Agent Scaffolding",
+      "phonetic": "/ˈeɪ.dʒənt ˈskæf.əl.dɪŋ/",
+      "meaning": "智能体脚手架",
+      "fullName": "Agent Scaffolding",
+      "example": "Agent scaffolding provides the infrastructure that wraps an LLM with memory, tools, and loops.",
+      "translation": "智能体脚手架提供将大模型与记忆、工具和循环封装在一起的基础设施。"
+    },
+    {
+      "word": "Declarative Memory",
+      "phonetic": "/dɪˈklær.ə.tɪv ˈmem.ər.i/",
+      "meaning": "陈述性记忆",
+      "fullName": "Declarative Memory",
+      "example": "Declarative memory stores facts and events that can be explicitly stated and recalled.",
+      "translation": "陈述性记忆存储可以被明确陈述和回忆的事实与事件。"
+    },
+    {
+      "word": "Desire",
+      "phonetic": "/dɪˈzaɪər/",
+      "meaning": "欲望",
+      "fullName": "Agent Desire (BDI)",
+      "example": "In BDI, desires represent the goals the agent is motivated to achieve.",
+      "translation": "在 BDI 模型中，欲望代表智能体有动机去实现的目标。"
+    },
+    {
+      "word": "Sparse Retrieval",
+      "phonetic": "/spɑːrs rɪˈtriː.vəl/",
+      "meaning": "稀疏检索",
+      "fullName": "Sparse Retrieval",
+      "example": "Sparse retrieval uses keyword-based methods like BM25 to find relevant documents.",
+      "translation": "稀疏检索使用基于关键词的方法（如 BM25）来查找相关文档。"
+    },
+    {
+      "word": "LangChain",
+      "phonetic": "/læŋ tʃeɪn/",
+      "meaning": "大模型应用框架",
+      "fullName": "LangChain",
+      "example": "LangChain provides building blocks for composing LLMs with tools, memory, and data sources.",
+      "translation": "LangChain 提供将大模型与工具、记忆和数据源组合的构建模块。"
+    },
+    {
+      "word": "Sensory Memory",
+      "phonetic": "/ˈsen.sər.i ˈmem.ər.i/",
+      "meaning": "感觉记忆",
+      "fullName": "Sensory Memory",
+      "example": "Sensory memory is the earliest stage, holding raw perceptual input for a very brief moment.",
+      "translation": "感觉记忆是最初阶段，极短暂地保存原始感知输入。"
+    },
+    {
+      "word": "Reflection Insight",
+      "phonetic": "/rɪˈflek.ʃən ˈɪn.saɪt/",
+      "meaning": "反思洞察",
+      "fullName": "Reflection Insight (Generative Agents)",
+      "example": "A reflection insight is a high-level conclusion the agent draws from patterns in its memories.",
+      "translation": "反思洞察是智能体从其记忆中的规律中得出的高层次结论。"
+    },
+    {
+      "word": "Trust",
+      "phonetic": "/trʌst/",
+      "meaning": "信任",
+      "fullName": "User-Agent Trust",
+      "example": "Trust builds over time when an AI companion is consistent, honest, and reliable.",
+      "translation": "当 AI 伴侣保持一致、诚实和可靠时，信任会随着时间积累。"
+    },
+    {
+      "word": "Memory Write",
+      "phonetic": "/ˈmem.ər.i raɪt/",
+      "meaning": "记忆写入",
+      "fullName": "Memory Write Operation",
+      "example": "A memory write operation stores a new fact into the agent's persistent memory store.",
+      "translation": "记忆写入操作将新事实存储到智能体的持久记忆库中。"
+    },
+    {
+      "word": "Environment Perception",
+      "phonetic": "/ɪnˈvaɪ.rən.mənt pəˈsep.ʃən/",
+      "meaning": "环境感知",
+      "fullName": "Environment Perception",
+      "example": "Environment perception converts raw sensory input into structured observations for the agent.",
+      "translation": "环境感知将原始感知输入转换为智能体可处理的结构化观察。"
+    },
+    {
+      "word": "Nearest Neighbor",
+      "phonetic": "/ˈnɪər.ɪst ˈneɪ.bər/",
+      "meaning": "最近邻",
+      "fullName": "Nearest Neighbor Search",
+      "example": "Nearest neighbor search finds the most semantically similar embedding in the vector store.",
+      "translation": "最近邻搜索在向量存储中找到语义最相似的嵌入。"
+    },
+    {
+      "word": "Mood Tracking",
+      "phonetic": "/muːd ˈtræk.ɪŋ/",
+      "meaning": "情绪追踪",
+      "fullName": "Mood Tracking",
+      "example": "Mood tracking monitors shifts in the user's emotional tone across conversations over time.",
+      "translation": "情绪追踪监测用户在多次对话中情绪语气随时间的变化。"
+    }
+  ]
+}
