@@ -521,7 +521,7 @@
   </div>
 </div>
 
-<div id="version">v2.0</div>
+<div id="version">v2.1</div>
 
 <!-- Menu overlay -->
 <div id="menu-overlay" role="dialog" aria-modal="true" aria-label="菜单">
@@ -737,7 +737,7 @@ function navigate(dir) {
 // ═══════════════════════════════════════════════
 // Speech
 // ═══════════════════════════════════════════════
-function speakFallback(word) {
+function speakTTS(word) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const utt = new SpeechSynthesisUtterance(word);
@@ -746,7 +746,6 @@ function speakFallback(word) {
   window.speechSynthesis.speak(utt);
 }
 
-// Reuse a single Audio element to avoid overlapping playback
 const _audio = new Audio();
 
 function speak() {
@@ -757,13 +756,20 @@ function speak() {
   _audio.pause();
   _audio.currentTime = 0;
 
-  _audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(w.word)}`;
+  // Multi-word phrases → Web Speech API directly (avoids CORS issues with remote audio)
+  if (w.word.includes(' ')) {
+    speakTTS(w.word);
+    return;
+  }
+
+  // Single words → try Google Dictionary (same-origin friendly), fallback to Web Speech API
+  _audio.src = `https://ssl.gstatic.com/dictionary/static/sounds/oxford/${w.word.toLowerCase()}--_us_1.mp3`;
 
   let fallbackDone = false;
   const tryFallback = () => {
     if (fallbackDone) return;
     fallbackDone = true;
-    speakFallback(w.word);
+    speakTTS(w.word);
   };
 
   _audio.onerror = tryFallback;
