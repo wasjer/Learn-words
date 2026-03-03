@@ -755,10 +755,16 @@ function speak() {
   const audio = new Audio(googleAudioUrl(w.word));
   _audioEl = audio;
 
-  audio.play().catch(() => {
-    // Google doesn't have this word → fall back to browser TTS
+  // Guard: some browsers reject the Promise, others fire 'error' event — handle both
+  let fallbackDone = false;
+  const tryFallback = () => {
+    if (fallbackDone) return;
+    fallbackDone = true;
     speakFallback(w.word);
-  });
+  };
+
+  audio.addEventListener('error', tryFallback, { once: true });
+  audio.play().catch(tryFallback);
 }
 
 // Word zones: clicking anywhere in them triggers speak
