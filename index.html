@@ -171,17 +171,6 @@
       color: #333333;
     }
 
-    #hint-front {
-      position: absolute;
-      bottom: calc(var(--safe-bottom) + 28px);
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 13px;
-      color: #cccccc;
-      letter-spacing: 0.5px;
-    }
-
     /* ── Back face ── */
     #back {
       display: none;
@@ -275,17 +264,6 @@
       font-size: 15px;
       color: #888888;
       line-height: 1.65;
-    }
-
-    #hint-back {
-      position: absolute;
-      bottom: calc(var(--safe-bottom) + 28px);
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 13px;
-      color: #cccccc;
-      letter-spacing: 0.5px;
     }
 
     /* ── Menu overlay ── */
@@ -494,8 +472,6 @@
       <div id="translation">GPT-4 是一个在海量文本数据上训练的强大大语言模型。</div>
     </div>
 
-    <div id="hint-front">点击屏幕查看释义</div>
-    <div id="hint-back" style="display:none">上滑下一个 · 下滑上一个</div>
   </div>
 </div>
 
@@ -569,8 +545,6 @@ const meaningEl    = document.getElementById('meaning');
 const fullNameEl   = document.getElementById('full-name');
 const exampleEl    = document.getElementById('example');
 const translationEl= document.getElementById('translation');
-const hintFront    = document.getElementById('hint-front');
-const hintBack     = document.getElementById('hint-back');
 const menuOverlay  = document.getElementById('menu-overlay');
 const menuBtn      = document.getElementById('menu-btn');
 const menuClose    = document.getElementById('menu-close');
@@ -654,15 +628,10 @@ function showFace(flip) {
     frontEl.style.display = 'none';
     backEl.style.display  = 'flex';
     backEl.classList.add('visible');
-    hintFront.style.display = 'none';
-    hintBack.style.display  = 'block';
   } else {
     frontEl.style.display = 'flex';
     backEl.style.display  = 'none';
     backEl.classList.remove('visible');
-    hintFront.style.display = 'block';
-    hintBack.style.display  = 'none';
-    // Scroll back to top when re-showing front
     backEl.scrollTop = 0;
   }
 }
