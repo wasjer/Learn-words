@@ -746,30 +746,19 @@ function speakFallback(word) {
   window.speechSynthesis.speak(utt);
 }
 
-// Use first word of multi-word terms for Google Dictionary lookup
-// e.g. "Memory Stream" → tries "memory-stream" then falls back to TTS
-function googleAudioUrl(word) {
-  const key = word.toLowerCase().replace(/\s+/g, '-');
-  return `https://ssl.gstatic.com/dictionary/static/sounds/oxford/${key}--_us_1.mp3`;
-}
-
-let _audioEl = null;
+// Reuse a single Audio element to avoid overlapping playback
+const _audio = new Audio();
 
 function speak() {
   const w = words[currentIndex];
   if (!w) return;
 
-  // Stop any previous audio
-  if (_audioEl) {
-    _audioEl.pause();
-    _audioEl = null;
-  }
   window.speechSynthesis && window.speechSynthesis.cancel();
+  _audio.pause();
+  _audio.currentTime = 0;
 
-  const audio = new Audio(googleAudioUrl(w.word));
-  _audioEl = audio;
+  _audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(w.word)}`;
 
-  // Guard: some browsers reject the Promise, others fire 'error' event — handle both
   let fallbackDone = false;
   const tryFallback = () => {
     if (fallbackDone) return;
@@ -777,8 +766,8 @@ function speak() {
     speakFallback(w.word);
   };
 
-  audio.addEventListener('error', tryFallback, { once: true });
-  audio.play().catch(tryFallback);
+  _audio.onerror = tryFallback;
+  _audio.play().catch(tryFallback);
 }
 
 // Word zones: clicking anywhere in them triggers speak
