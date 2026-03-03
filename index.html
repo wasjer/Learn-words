@@ -689,15 +689,42 @@ function navigate(dir) {
 // ═══════════════════════════════════════════════
 // Speech
 // ═══════════════════════════════════════════════
-function speak() {
+function speakFallback(word) {
   if (!('speechSynthesis' in window)) return;
-  const w = words[currentIndex];
-  if (!w) return;
   window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(w.word);
+  const utt = new SpeechSynthesisUtterance(word);
   utt.lang = 'en-US';
   utt.rate = 0.9;
   window.speechSynthesis.speak(utt);
+}
+
+// Use first word of multi-word terms for Google Dictionary lookup
+// e.g. "Memory Stream" → tries "memory-stream" then falls back to TTS
+function googleAudioUrl(word) {
+  const key = word.toLowerCase().replace(/\s+/g, '-');
+  return `https://ssl.gstatic.com/dictionary/static/sounds/oxford/${key}--_us_1.mp3`;
+}
+
+let _audioEl = null;
+
+function speak() {
+  const w = words[currentIndex];
+  if (!w) return;
+
+  // Stop any previous audio
+  if (_audioEl) {
+    _audioEl.pause();
+    _audioEl = null;
+  }
+  window.speechSynthesis && window.speechSynthesis.cancel();
+
+  const audio = new Audio(googleAudioUrl(w.word));
+  _audioEl = audio;
+
+  audio.play().catch(() => {
+    // Google doesn't have this word → fall back to browser TTS
+    speakFallback(w.word);
+  });
 }
 
 function addSpeakListeners(btn) {
